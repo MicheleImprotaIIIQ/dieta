@@ -183,7 +183,7 @@
         <h2 class="font-bold text-lg flex items-center gap-2">✨ Extra / Libero (IA)</h2>
         <span class="text-xs bg-gray-100 text-gray-700 px-2.5 py-1 rounded-full font-medium" id="ai-macro">0 kcal</span>
       </div>
-      <p class="text-xs text-gray-500 mb-2">Aggiungi cibi liberi: verranno salvati e sincronizzati su tutti i tuoi dispositivi.</p>
+      <p class="text-xs text-gray-500 mb-2">Aggiungi cibi liberi: verranno sincronizzati su tutti i tuoi dispositivi.</p>
 
       <div class="space-y-2">
         <input type="text" id="ai-input" placeholder="Es: 1 mela 150g, 20g cioccolato fondente..." class="w-full p-2.5 bg-gray-50 border border-gray-300 rounded-xl text-sm outline-none focus:ring-2 focus:ring-black">
@@ -199,51 +199,42 @@
 
   </main>
 
-  <!-- FIREBASE CLOUD SDK PER SINCRONIZZAZIONE MAC & IPHONE -->
+  <!-- FIREBASE CLOUD SDK CON LE TUE CHIAVI GIA' INSERITE -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
     import { getFirestore, doc, setDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
-    // ==========================================
-    // INCOLLA QUI I TUOI DATI PRESI DA FIREBASE:
-    // ==========================================
     const firebaseConfig = {
-      apiKey: "INCOLLA_QUI",
-      authDomain: "INCOLLA_QUI",
-      projectId: "INCOLLA_QUI",
-      storageBucket: "INCOLLA_QUI",
-      messagingSenderId: "INCOLLA_QUI",
-      appId: "INCOLLA_QUI"
+      apiKey: "AIzaSyAAlFobDFyJgef8RXNqrXuzqu6o3wWCNTc",
+      authDomain: "dietatracker.firebaseapp.com",
+      projectId: "dietatracker",
+      storageBucket: "dietatracker.firebasestorage.app",
+      messagingSenderId: "341375533639",
+      appId: "1:341375533639:web:21812bcc440a509335a762"
     };
 
     let db = null;
     let isCloudReady = false;
 
     try {
-      if (firebaseConfig.apiKey !== "INCOLLA_QUI") {
-        const app = initializeApp(firebaseConfig);
-        db = getFirestore(app);
-        isCloudReady = true;
+      const app = initializeApp(firebaseConfig);
+      db = getFirestore(app);
+      isCloudReady = true;
 
-        // Ascolto in tempo reale: se modifichi su Mac, l'iPhone si aggiorna all'istante
-        onSnapshot(doc(db, "dieta", "oggi"), (docSnap) => {
-          if (docSnap.exists()) {
-            applyData(docSnap.data());
-          }
-        });
-      } else {
-        document.getElementById('sync-badge').innerText = '💾 Solo Locale (Inserisci Firebase per Cloud)';
-        document.getElementById('sync-badge').className = 'text-[10px] bg-amber-100 text-amber-800 px-2 py-0.5 rounded-full font-semibold';
-      }
+      // Ascolto in tempo reale tra Mac e iPhone
+      onSnapshot(doc(db, "dieta", "oggi"), (docSnap) => {
+        if (docSnap.exists()) {
+          applyData(docSnap.data());
+        }
+      });
     } catch (e) {
-      console.error("Errore connessione Cloud:", e);
+      console.error("Errore Firebase:", e);
+      document.getElementById('sync-badge').innerText = '⚠️ Errore Cloud';
+      document.getElementById('sync-badge').className = 'text-[10px] bg-red-100 text-red-700 px-2 py-0.5 rounded-full font-semibold';
     }
 
-    // Funzione globale di salvataggio sul Cloud
     window.saveToCloud = async function(data) {
-      // Salva sempre anche in locale per sicurezza
       localStorage.setItem('myDietLog', JSON.stringify(data));
-
       if (isCloudReady && db) {
         try {
           await setDoc(doc(db, "dieta", "oggi"), data);
@@ -414,7 +405,6 @@
     function triggerUpdate() {
       updateTotalsUI();
 
-      // Raccoglie i dati e li invia al Cloud
       const data = {
         colazione: document.getElementById('sel-colazione').value,
         pranzoMode: state.pranzoMode,
@@ -565,7 +555,6 @@
     }
 
     initSelects();
-    // Caricamento locale iniziale
     const saved = localStorage.getItem('myDietLog');
     if (saved) applyData(JSON.parse(saved));
   </script>
