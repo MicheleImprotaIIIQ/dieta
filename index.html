@@ -4,9 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MacroTracker</title>
-  <!-- Tailwind CSS per interfaccia Apple-style pulita -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body class="bg-gray-100 text-gray-800 font-sans pb-16">
 
@@ -15,14 +13,14 @@
     <div class="max-w-2xl mx-auto">
       <div class="flex justify-between items-center mb-2">
         <h1 class="text-xl font-bold tracking-tight">Oggi • 2000 kcal</h1>
-        <button onclick="resetDay()" class="text-xs text-red-500 hover:text-red-700 font-medium">Azzera Pasti</button>
+        <button onclick="resetDay()" class="text-xs text-red-500 hover:text-red-700 font-medium">Azzera Giornata</button>
       </div>
 
       <!-- Barre di avanzamento Macronutrienti -->
       <div class="grid grid-cols-4 gap-2 text-center text-xs">
         <!-- Calorie -->
         <div class="bg-gray-50 p-2 rounded-lg border border-gray-200">
-          <div class="text-gray-500">Calorie</div>
+          <div class="text-gray-500 font-medium">Calorie</div>
           <div class="font-bold text-sm" id="cal-count">0 / 2000</div>
           <div class="w-full bg-gray-200 rounded-full h-1.5 mt-1 overflow-hidden">
             <div id="bar-cal" class="bg-black h-1.5 rounded-full" style="width: 0%"></div>
@@ -30,15 +28,15 @@
         </div>
         <!-- Proteine -->
         <div class="bg-gray-50 p-2 rounded-lg border border-gray-200">
-          <div class="text-blue-500 font-semibold">Proteine</div>
+          <div class="text-blue-600 font-semibold">Proteine</div>
           <div class="font-bold text-sm" id="p-count">0 / 120g</div>
           <div class="w-full bg-gray-200 rounded-full h-1.5 mt-1 overflow-hidden">
-            <div id="bar-p" class="bg-blue-500 h-1.5 rounded-full" style="width: 0%"></div>
+            <div id="bar-p" class="bg-blue-600 h-1.5 rounded-full" style="width: 0%"></div>
           </div>
         </div>
         <!-- Carboidrati -->
         <div class="bg-gray-50 p-2 rounded-lg border border-gray-200">
-          <div class="text-amber-500 font-semibold">Carbo</div>
+          <div class="text-amber-600 font-semibold">Carbo</div>
           <div class="font-bold text-sm" id="c-count">0 / 245g</div>
           <div class="w-full bg-gray-200 rounded-full h-1.5 mt-1 overflow-hidden">
             <div id="bar-c" class="bg-amber-500 h-1.5 rounded-full" style="width: 0%"></div>
@@ -46,7 +44,7 @@
         </div>
         <!-- Grassi -->
         <div class="bg-gray-50 p-2 rounded-lg border border-gray-200">
-          <div class="text-emerald-500 font-semibold">Grassi</div>
+          <div class="text-emerald-600 font-semibold">Grassi</div>
           <div class="font-bold text-sm" id="f-count">0 / 55g</div>
           <div class="w-full bg-gray-200 rounded-full h-1.5 mt-1 overflow-hidden">
             <div id="bar-f" class="bg-emerald-500 h-1.5 rounded-full" style="width: 0%"></div>
@@ -62,15 +60,15 @@
     <div class="bg-white rounded-2xl p-4 shadow-sm border border-gray-200">
       <div class="flex items-center justify-between mb-3">
         <h2 class="font-bold text-lg flex items-center gap-2">🥣 Colazione</h2>
-        <span class="text-xs bg-gray-100 text-gray-600 px-2.5 py-1 rounded-full font-medium" id="colazione-macro">0 kcal</span>
+        <span class="text-xs bg-gray-100 text-gray-700 px-2.5 py-1 rounded-full font-medium" id="colazione-macro">0 kcal</span>
       </div>
-      <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">Scegli tra le tue opzioni</label>
-      <select id="sel-colazione" onchange="updateAll()" class="w-full p-2.5 bg-gray-50 border border-gray-300 rounded-xl text-sm focus:ring-2 focus:ring-black outline-none">
-        <option value="none">-- Nessuna selezione --</option>
-        <option value="1">Opzione 1: 50g Pane + 50g Salmone + 1/4 Avocado + 100ml Latte scremato</option>
-        <option value="2">Opzione 2: 50g Pane + 30g Philadelphia + 1 Uovo intero + 100ml Albume</option>
-        <option value="3">Opzione 3: 50g Pane + 1 Uovo intero + 100ml Albume + 1/4 Avocado</option>
-        <option value="4">Opzione 4: 200g Yogurt greco 0% + 45g Avena + 10g Miele + 10g Noci/Mandorle</option>
+      <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">Scegli la tua opzione</label>
+      <select id="sel-colazione" onchange="updateAll()" class="w-full p-2.5 bg-gray-50 border border-gray-300 rounded-xl text-sm outline-none focus:ring-2 focus:ring-black">
+        <option value="none">-- Seleziona Colazione --</option>
+        <option value="1">Opzione 1: 50g Pane + 50g Salmone + 1/4 Avocado + 100ml Latte 0%</option>
+        <option value="2">Opzione 2: 50g Pane + 30g Philadelphia + 1 Uovo + 100ml Albume</option>
+        <option value="3">Opzione 3: 50g Pane + 1 Uovo + 100ml Albume + 1/4 Avocado</option>
+        <option value="4">Opzione 4: 200g Yogurt greco 0% + 45g Avena + 10g Miele + 10g Noci</option>
       </select>
     </div>
 
@@ -78,45 +76,53 @@
     <div class="bg-white rounded-2xl p-4 shadow-sm border border-gray-200">
       <div class="flex items-center justify-between mb-3">
         <h2 class="font-bold text-lg flex items-center gap-2">🍝 Pranzo</h2>
-        <span class="text-xs bg-gray-100 text-gray-600 px-2.5 py-1 rounded-full font-medium" id="pranzo-macro">0 kcal</span>
+        <span class="text-xs bg-gray-100 text-gray-700 px-2.5 py-1 rounded-full font-medium" id="pranzo-macro">0 kcal</span>
       </div>
 
-      <!-- Switch Tipo Pasto -->
+      <!-- Switch Modalità Pranzo -->
       <div class="flex bg-gray-100 p-1 rounded-xl mb-3 text-xs font-semibold">
-        <button id="btn-pranzo-classico" onclick="switchPranzoMode('classico')" class="flex-1 py-1.5 rounded-lg bg-white shadow-sm">Classico (Proteina + Pasta)</button>
+        <button id="btn-pranzo-classico" onclick="switchPranzoMode('classico')" class="flex-1 py-1.5 rounded-lg bg-white shadow-sm">Classico (Proteina + Pasta + Olio)</button>
         <button id="btn-pranzo-legumi" onclick="switchPranzoMode('legumi')" class="flex-1 py-1.5 rounded-lg text-gray-500">Piatto Unico (Legumi)</button>
       </div>
 
       <!-- Pranzo: Componibile Classico -->
       <div id="pranzo-mode-classico" class="space-y-3">
         <div>
-          <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">Cosa hai in frigo come proteina?</label>
-          <select id="sel-pranzo-prot" onchange="updateAll()" class="w-full p-2.5 bg-gray-50 border border-gray-300 rounded-xl text-sm focus:ring-2 focus:ring-black outline-none">
+          <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">Fonte Proteica</label>
+          <select id="sel-pranzo-prot" onchange="updateAll()" class="w-full p-2.5 bg-gray-50 border border-gray-300 rounded-xl text-sm outline-none focus:ring-2 focus:ring-black">
             <option value="none">-- Seleziona proteina --</option>
           </select>
         </div>
-        <div class="bg-gray-50 p-2.5 rounded-xl text-xs text-gray-600 flex justify-between">
-          <span>🍝 Pasta standard inclusa: <b>100g</b></span>
-          <span>🫒 Olio EVO: <b>1 cucchiaio (10g)</b></span>
+
+        <!-- Pasta e Olio indipendenti -->
+        <div class="grid grid-cols-2 gap-2 pt-1">
+          <label class="flex items-center gap-2 p-2.5 bg-gray-50 border border-gray-200 rounded-xl cursor-pointer">
+            <input type="checkbox" id="chk-pranzo-pasta" checked onchange="updateAll()" class="w-4 h-4 rounded text-black focus:ring-black">
+            <span class="text-xs font-medium text-gray-700">🍝 100g Pasta</span>
+          </label>
+          <label class="flex items-center gap-2 p-2.5 bg-gray-50 border border-gray-200 rounded-xl cursor-pointer">
+            <input type="checkbox" id="chk-pranzo-olio" checked onchange="updateAll()" class="w-4 h-4 rounded text-black focus:ring-black">
+            <span class="text-xs font-medium text-gray-700">🫒 1 cucchiaio Olio (10g)</span>
+          </label>
         </div>
       </div>
 
       <!-- Pranzo: Piatto Unico Legumi -->
       <div id="pranzo-mode-legumi" class="hidden space-y-3">
         <div>
-          <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">Scegli il piatto unico a base di legumi</label>
-          <select id="sel-pranzo-legumi" onchange="updateAll()" class="w-full p-2.5 bg-gray-50 border border-gray-300 rounded-xl text-sm focus:ring-2 focus:ring-black outline-none">
+          <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">Piatto Unico a base di Legumi</label>
+          <select id="sel-pranzo-legumi" onchange="updateAll()" class="w-full p-2.5 bg-gray-50 border border-gray-300 rounded-xl text-sm outline-none focus:ring-2 focus:ring-black">
             <option value="none">-- Seleziona legume --</option>
           </select>
         </div>
       </div>
     </div>
 
-    <!-- 3. MERENDA (Fissa) -->
+    <!-- 3. MERENDA -->
     <div class="bg-white rounded-2xl p-4 shadow-sm border border-gray-200">
       <div class="flex items-center justify-between mb-2">
         <h2 class="font-bold text-lg flex items-center gap-2">🍌 Merenda</h2>
-        <span class="text-xs bg-gray-100 text-gray-600 px-2.5 py-1 rounded-full font-medium" id="merenda-macro">0 kcal</span>
+        <span class="text-xs bg-gray-100 text-gray-700 px-2.5 py-1 rounded-full font-medium" id="merenda-macro">0 kcal</span>
       </div>
       <div class="flex items-center justify-between p-3 bg-gray-50 rounded-xl border border-gray-200">
         <div class="text-xs">
@@ -125,7 +131,7 @@
         </div>
         <label class="flex items-center gap-2 cursor-pointer">
           <input type="checkbox" id="chk-merenda" onchange="updateAll()" class="w-5 h-5 rounded text-black focus:ring-black">
-          <span class="text-xs font-semibold">Consumata</span>
+          <span class="text-xs font-bold text-gray-800">Mangiata</span>
         </label>
       </div>
     </div>
@@ -134,42 +140,46 @@
     <div class="bg-white rounded-2xl p-4 shadow-sm border border-gray-200">
       <div class="flex items-center justify-between mb-3">
         <h2 class="font-bold text-lg flex items-center gap-2">🍽️ Cena</h2>
-        <span class="text-xs bg-gray-100 text-gray-600 px-2.5 py-1 rounded-full font-medium" id="cena-macro">0 kcal</span>
+        <span class="text-xs bg-gray-100 text-gray-700 px-2.5 py-1 rounded-full font-medium" id="cena-macro">0 kcal</span>
       </div>
 
-      <!-- Switch Tipo Pasto Cena -->
+      <!-- Switch Modalità Cena -->
       <div class="flex bg-gray-100 p-1 rounded-xl mb-3 text-xs font-semibold">
-        <button id="btn-cena-classico" onclick="switchCenaMode('classico')" class="flex-1 py-1.5 rounded-lg bg-white shadow-sm">Classico (Proteina + Carbo)</button>
+        <button id="btn-cena-classico" onclick="switchCenaMode('classico')" class="flex-1 py-1.5 rounded-lg bg-white shadow-sm">Classico (Proteina + Carbo + Olio)</button>
         <button id="btn-cena-legumi" onclick="switchCenaMode('legumi')" class="flex-1 py-1.5 rounded-lg text-gray-500">Piatto Unico (Legumi)</button>
       </div>
 
       <!-- Cena: Componibile Classico -->
       <div id="cena-mode-classico" class="space-y-3">
         <div>
-          <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">Cosa hai in frigo come proteina?</label>
-          <select id="sel-cena-prot" onchange="updateAll()" class="w-full p-2.5 bg-gray-50 border border-gray-300 rounded-xl text-sm focus:ring-2 focus:ring-black outline-none">
+          <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">Fonte Proteica</label>
+          <select id="sel-cena-prot" onchange="updateAll()" class="w-full p-2.5 bg-gray-50 border border-gray-300 rounded-xl text-sm outline-none focus:ring-2 focus:ring-black">
             <option value="none">-- Seleziona proteina --</option>
           </select>
         </div>
+
         <div>
-          <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">Carboidrato a scelta</label>
-          <select id="sel-cena-carb" onchange="updateAll()" class="w-full p-2.5 bg-gray-50 border border-gray-300 rounded-xl text-sm focus:ring-2 focus:ring-black outline-none">
+          <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">Fonte di Carboidrati</label>
+          <select id="sel-cena-carb" onchange="updateAll()" class="w-full p-2.5 bg-gray-50 border border-gray-300 rounded-xl text-sm outline-none focus:ring-2 focus:ring-black">
             <option value="none">-- Seleziona carboidrato --</option>
-            <option value="pane">70g Pane (190 kcal • 6g P • 36g C)</option>
-            <option value="patate">250g Patate (200 kcal • 4.5g P • 43g C)</option>
-            <option value="riso">65g Riso (230 kcal • 5g P • 51g C)</option>
+            <option value="pane">70g Pane (190 kcal • 6g P • 36g C • 1g G)</option>
+            <option value="patate">250g Patate (200 kcal • 4.5g P • 43g C • 0.5g G)</option>
+            <option value="riso">65g Riso (230 kcal • 5g P • 51g C • 0.5g G)</option>
           </select>
         </div>
-        <div class="bg-gray-50 p-2.5 rounded-xl text-xs text-gray-600 flex justify-between">
-          <span>🫒 Olio EVO standard incluso: <b>1 cucchiaio (10g)</b></span>
-        </div>
+
+        <!-- Olio Cena indipendente -->
+        <label class="flex items-center gap-2 p-2.5 bg-gray-50 border border-gray-200 rounded-xl cursor-pointer">
+          <input type="checkbox" id="chk-cena-olio" checked onchange="updateAll()" class="w-4 h-4 rounded text-black focus:ring-black">
+          <span class="text-xs font-medium text-gray-700">🫒 1 cucchiaio Olio EVO (10g) (90 kcal • 10g G)</span>
+        </label>
       </div>
 
       <!-- Cena: Piatto Unico Legumi -->
       <div id="cena-mode-legumi" class="hidden space-y-3">
         <div>
-          <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">Scegli il piatto unico a base di legumi</label>
-          <select id="sel-cena-legumi" onchange="updateAll()" class="w-full p-2.5 bg-gray-50 border border-gray-300 rounded-xl text-sm focus:ring-2 focus:ring-black outline-none">
+          <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">Piatto Unico a base di Legumi</label>
+          <select id="sel-cena-legumi" onchange="updateAll()" class="w-full p-2.5 bg-gray-50 border border-gray-300 rounded-xl text-sm outline-none focus:ring-2 focus:ring-black">
             <option value="none">-- Seleziona legume --</option>
           </select>
         </div>
@@ -179,7 +189,7 @@
   </main>
 
   <script>
-    // DATABASE PROTEINE COMUNI (Pranzo e Cena)
+    // DATABASE PROTEINE
     const PROTEINE = [
       { id: "macinato", name: "150g Macinato magro / Scottona", p: 31, c: 0, f: 7, kcal: 190 },
       { id: "pollo", name: "140g Petto di pollo", p: 32, c: 0, f: 1.5, kcal: 145 },
@@ -193,13 +203,13 @@
       { id: "sgombro", name: "140g Sgombro al naturale sgocc.", p: 29, c: 0, f: 10, kcal: 210 },
       { id: "gamberi", name: "160g Gamberi / Mazzancolle sgusc.", p: 32, c: 1, f: 1, kcal: 140 },
       { id: "molluschi", name: "180g Anelli di totano / seppia", p: 30, c: 2, f: 2, kcal: 145 },
-      { id: "scatola_pollo", name: "150g Pollo in scatola al naturale sgocc.", p: 31, c: 0, f: 1.5, kcal: 140 },
+      { id: "scatola_pollo", name: "150g Pollo in scatola naturale sgocc.", p: 31, c: 0, f: 1.5, kcal: 140 },
       { id: "uova", name: "2 Uova intere + 150g Albume", p: 28, c: 1.5, f: 10, kcal: 210 },
       { id: "fiocchi", name: "250g Fiocchi di latte magri", p: 28, c: 6, f: 4, kcal: 175 },
       { id: "ricotta", name: "200g Ricotta vaccina", p: 18, c: 7, f: 18, kcal: 260 }
     ];
 
-    // DATABASE PIATTI UNICI LEGUMI
+    // DATABASE LEGUMI (Pasti Unici)
     const LEGUMI = [
       { id: "ceci_barattolo", name: "350g Ceci barattolo + 30g Pane + Olio", p: 27, c: 75, f: 18, kcal: 580 },
       { id: "lenticchie_barattolo", name: "350g Lenticchie barattolo + 30g Pane + Olio", p: 29, c: 70, f: 16, kcal: 560 },
@@ -218,13 +228,15 @@
     // MERENDA
     const MERENDA = { p: 5.5, c: 60, f: 2, kcal: 270 };
 
-    // STATO CORRENTE
+    // COMPONENTI FISSI
+    const PASTA_PRANZO = { p: 12, c: 73, f: 1.5, kcal: 355 };
+    const OLIO_EVO = { p: 0, c: 0, f: 10, kcal: 90 };
+
     let state = {
       pranzoMode: 'classico',
       cenaMode: 'classico'
     };
 
-    // Popola i menu a tendina
     function initSelects() {
       const pSel1 = document.getElementById('sel-pranzo-prot');
       const pSel2 = document.getElementById('sel-cena-prot');
@@ -262,7 +274,7 @@
     function updateAll() {
       let tot = { kcal: 0, p: 0, c: 0, f: 0 };
 
-      // 1. Colazione
+      // 1. COLAZIONE
       const cVal = document.getElementById('sel-colazione').value;
       if (cVal !== 'none' && COLAZIONI[cVal]) {
         const col = COLAZIONI[cVal];
@@ -272,28 +284,34 @@
         document.getElementById('colazione-macro').innerText = `0 kcal`;
       }
 
-      // 2. Pranzo
+      // 2. PRANZO (Ogni elemento calcolato indipendentemente)
       let pMeal = { kcal: 0, p: 0, c: 0, f: 0 };
       if (state.pranzoMode === 'classico') {
+        // Proteina
         const protId = document.getElementById('sel-pranzo-prot').value;
         if (protId !== 'none') {
           const prot = PROTEINE.find(x => x.id === protId);
-          // Pasta 100g (355 kcal, 12P, 73C, 1.5G) + Olio 10g (90 kcal, 10G)
-          pMeal.kcal = prot.kcal + 355 + 90;
-          pMeal.p = prot.p + 12;
-          pMeal.c = prot.c + 73;
-          pMeal.f = prot.f + 11.5;
+          pMeal.kcal += prot.kcal; pMeal.p += prot.p; pMeal.c += prot.c; pMeal.f += prot.f;
+        }
+        // Pasta 100g
+        if (document.getElementById('chk-pranzo-pasta').checked) {
+          pMeal.kcal += PASTA_PRANZO.kcal; pMeal.p += PASTA_PRANZO.p; pMeal.c += PASTA_PRANZO.c; pMeal.f += PASTA_PRANZO.f;
+        }
+        // Olio EVO
+        if (document.getElementById('chk-pranzo-olio').checked) {
+          pMeal.kcal += OLIO_EVO.kcal; pMeal.p += OLIO_EVO.p; pMeal.c += OLIO_EVO.c; pMeal.f += OLIO_EVO.f;
         }
       } else {
         const legId = document.getElementById('sel-pranzo-legumi').value;
         if (legId !== 'none') {
-          pMeal = LEGUMI.find(x => x.id === legId);
+          const leg = LEGUMI.find(x => x.id === legId);
+          pMeal.kcal += leg.kcal; pMeal.p += leg.p; pMeal.c += leg.c; pMeal.f += leg.f;
         }
       }
       tot.kcal += pMeal.kcal; tot.p += pMeal.p; tot.c += pMeal.c; tot.f += pMeal.f;
       document.getElementById('pranzo-macro').innerText = `${Math.round(pMeal.kcal)} kcal • ${Math.round(pMeal.p)}P ${Math.round(pMeal.c)}C ${Math.round(pMeal.f)}G`;
 
-      // 3. Merenda
+      // 3. MERENDA
       if (document.getElementById('chk-merenda').checked) {
         tot.kcal += MERENDA.kcal; tot.p += MERENDA.p; tot.c += MERENDA.c; tot.f += MERENDA.f;
         document.getElementById('merenda-macro').innerText = `${MERENDA.kcal} kcal • ${MERENDA.p}P ${MERENDA.c}C ${MERENDA.f}G`;
@@ -301,34 +319,35 @@
         document.getElementById('merenda-macro').innerText = `0 kcal`;
       }
 
-      // 4. Cena
+      // 4. CENA (Ogni elemento calcolato indipendentemente)
       let cMeal = { kcal: 0, p: 0, c: 0, f: 0 };
       if (state.cenaMode === 'classico') {
+        // Proteina
         const protId = document.getElementById('sel-cena-prot').value;
-        const carbId = document.getElementById('sel-cena-carb').value;
-        if (protId !== 'none' && carbId !== 'none') {
+        if (protId !== 'none') {
           const prot = PROTEINE.find(x => x.id === protId);
-          let carbValues = { kcal: 0, p: 0, c: 0, f: 0 };
-          if (carbId === 'pane') carbValues = { kcal: 190, p: 6, c: 36, f: 1 };
-          if (carbId === 'patate') carbValues = { kcal: 200, p: 4.5, c: 43, f: 0.5 };
-          if (carbId === 'riso') carbValues = { kcal: 230, p: 5, c: 51, f: 0.5 };
-
-          // + Olio EVO 10g (90 kcal, 10G)
-          cMeal.kcal = prot.kcal + carbValues.kcal + 90;
-          cMeal.p = prot.p + carbValues.p;
-          cMeal.c = prot.c + carbValues.c;
-          cMeal.f = prot.f + carbValues.f + 10;
+          cMeal.kcal += prot.kcal; cMeal.p += prot.p; cMeal.c += prot.c; cMeal.f += prot.f;
+        }
+        // Carboidrato
+        const carbId = document.getElementById('sel-cena-carb').value;
+        if (carbId === 'pane')   { cMeal.kcal += 190; cMeal.p += 6;   cMeal.c += 36; cMeal.f += 1; }
+        if (carbId === 'patate') { cMeal.kcal += 200; cMeal.p += 4.5; cMeal.c += 43; cMeal.f += 0.5; }
+        if (carbId === 'riso')   { cMeal.kcal += 230; cMeal.p += 5;   cMeal.c += 51; cMeal.f += 0.5; }
+        // Olio EVO
+        if (document.getElementById('chk-cena-olio').checked) {
+          cMeal.kcal += OLIO_EVO.kcal; cMeal.p += OLIO_EVO.p; cMeal.c += OLIO_EVO.c; cMeal.f += OLIO_EVO.f;
         }
       } else {
         const legId = document.getElementById('sel-cena-legumi').value;
         if (legId !== 'none') {
-          cMeal = LEGUMI.find(x => x.id === legId);
+          const leg = LEGUMI.find(x => x.id === legId);
+          cMeal.kcal += leg.kcal; cMeal.p += leg.p; cMeal.c += leg.c; cMeal.f += leg.f;
         }
       }
       tot.kcal += cMeal.kcal; tot.p += cMeal.p; tot.c += cMeal.c; tot.f += cMeal.f;
       document.getElementById('cena-macro').innerText = `${Math.round(cMeal.kcal)} kcal • ${Math.round(cMeal.p)}P ${Math.round(cMeal.c)}C ${Math.round(cMeal.f)}G`;
 
-      // RENDER DELLE BARRE SUPERIORI
+      // AGGIORNA BARRE PROGRESSO IN ALTO
       document.getElementById('cal-count').innerText = `${Math.round(tot.kcal)} / 2000`;
       document.getElementById('p-count').innerText = `${Math.round(tot.p)} / 120g`;
       document.getElementById('c-count').innerText = `${Math.round(tot.c)} / 245g`;
@@ -339,7 +358,6 @@
       document.getElementById('bar-c').style.width = `${Math.min((tot.c / 245) * 100, 100)}%`;
       document.getElementById('bar-f').style.width = `${Math.min((tot.f / 55) * 100, 100)}%`;
 
-      // Salva stato in locale
       saveState();
     }
 
@@ -348,11 +366,14 @@
         colazione: document.getElementById('sel-colazione').value,
         pranzoMode: state.pranzoMode,
         pranzoProt: document.getElementById('sel-pranzo-prot').value,
+        pranzoPasta: document.getElementById('chk-pranzo-pasta').checked,
+        pranzoOlio: document.getElementById('chk-pranzo-olio').checked,
         pranzoLeg: document.getElementById('sel-pranzo-legumi').value,
         merenda: document.getElementById('chk-merenda').checked,
         cenaMode: state.cenaMode,
         cenaProt: document.getElementById('sel-cena-prot').value,
         cenaCarb: document.getElementById('sel-cena-carb').value,
+        cenaOlio: document.getElementById('chk-cena-olio').checked,
         cenaLeg: document.getElementById('sel-cena-legumi').value
       };
       localStorage.setItem('myDietLog', JSON.stringify(data));
@@ -365,24 +386,26 @@
         document.getElementById('sel-colazione').value = d.colazione || 'none';
         if (d.pranzoMode) switchPranzoMode(d.pranzoMode);
         document.getElementById('sel-pranzo-prot').value = d.pranzoProt || 'none';
+        if (d.pranzoPasta !== undefined) document.getElementById('chk-pranzo-pasta').checked = d.pranzoPasta;
+        if (d.pranzoOlio !== undefined) document.getElementById('chk-pranzo-olio').checked = d.pranzoOlio;
         document.getElementById('sel-pranzo-legumi').value = d.pranzoLeg || 'none';
         document.getElementById('chk-merenda').checked = !!d.merenda;
         if (d.cenaMode) switchCenaMode(d.cenaMode);
         document.getElementById('sel-cena-prot').value = d.cenaProt || 'none';
         document.getElementById('sel-cena-carb').value = d.cenaCarb || 'none';
+        if (d.cenaOlio !== undefined) document.getElementById('chk-cena-olio').checked = d.cenaOlio;
         document.getElementById('sel-cena-legumi').value = d.cenaLeg || 'none';
       }
       updateAll();
     }
 
     function resetDay() {
-      if (confirm('Vuoi azzerare le scelte della giornata?')) {
+      if (confirm('Vuoi azzerare tutte le selezioni del giorno?')) {
         localStorage.removeItem('myDietLog');
         location.reload();
       }
     }
 
-    // Avvio
     initSelects();
     loadState();
   </script>
