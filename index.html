@@ -1,5 +1,3 @@
-code
-Html
 <!DOCTYPE html>
 <html lang="it">
 <head>
@@ -15,7 +13,7 @@ Html
     <div class="max-w-2xl mx-auto">
       <div class="flex justify-between items-center mb-2">
         <h1 class="text-xl font-bold tracking-tight">Oggi • 2000 kcal</h1>
-        <button onclick="resetDay()" class="text-xs text-red-500 hover:text-red-700 font-medium">Azzera Giornata</button>
+        <button onclick="resetDay()" class="text-xs text-red-500 hover:text-red-700 font-medium">Azzera</button>
       </div>
 
       <!-- Barre di avanzamento Macronutrienti -->
@@ -38,7 +36,7 @@ Html
         </div>
         <!-- Carboidrati -->
         <div class="bg-gray-50 p-2 rounded-lg border border-gray-200">
-          <div class="text-amber-600 font-semibold">Carbo</div>
+          <div class="text-amber-600 font-semibold">Carboidrati</div>
           <div class="font-bold text-sm" id="c-count">0 / 245g</div>
           <div class="w-full bg-gray-200 rounded-full h-1.5 mt-1 overflow-hidden">
             <div id="bar-c" class="bg-amber-500 h-1.5 rounded-full" style="width: 0%"></div>
@@ -67,10 +65,10 @@ Html
       <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">Scegli la tua opzione</label>
       <select id="sel-colazione" onchange="updateAll()" class="w-full p-2.5 bg-gray-50 border border-gray-300 rounded-xl text-sm outline-none focus:ring-2 focus:ring-black">
         <option value="none">-- Seleziona Colazione --</option>
-        <option value="1">Opzione 1: 50g Pane + 50g Salmone + 1/4 Avocado + 100ml Latte 0%</option>
-        <option value="2">Opzione 2: 50g Pane + 30g Philadelphia + 1 Uovo + 100ml Albume</option>
-        <option value="3">Opzione 3: 50g Pane + 1 Uovo + 100ml Albume + 1/4 Avocado</option>
-        <option value="4">Opzione 4: 200g Yogurt greco 0% + 45g Avena + 10g Miele + 10g Noci</option>
+        <option value="1">Salmone: 50g Pane + 50g Salmone + 1/4 Avocado + 100ml Latte 0%</option>
+        <option value="2">Philadelphia: 50g Pane + 30g Philadelphia + 1 Uovo + 100ml Albume</option>
+        <option value="3">Uovo: 50g Pane + 1 Uovo + 100ml Albume + 1/4 Avocado</option>
+        <option value="4">Avena: 200g Yogurt greco 0% + 45g Avena + 10g Miele + 10g Noci</option>
       </select>
     </div>
 
@@ -83,8 +81,8 @@ Html
 
       <!-- Switch Modalità Pranzo -->
       <div class="flex bg-gray-100 p-1 rounded-xl mb-3 text-xs font-semibold">
-        <button id="btn-pranzo-classico" onclick="switchPranzoMode('classico')" class="flex-1 py-1.5 rounded-lg bg-white shadow-sm">Classico (Proteina + Pasta + Olio)</button>
-        <button id="btn-pranzo-legumi" onclick="switchPranzoMode('legumi')" class="flex-1 py-1.5 rounded-lg text-gray-500">Piatto Unico (Legumi)</button>
+        <button id="btn-pranzo-classico" onclick="switchPranzoMode('classico')" class="flex-1 py-1.5 rounded-lg bg-white shadow-sm">Pasta</button>
+        <button id="btn-pranzo-legumi" onclick="switchPranzoMode('legumi')" class="flex-1 py-1.5 rounded-lg text-gray-500">Legumi</button>
       </div>
 
       <!-- Pranzo: Componibile Classico -->
@@ -93,11 +91,11 @@ Html
         <div class="grid grid-cols-2 gap-2 pb-1">
           <label class="flex items-center gap-2 p-2.5 bg-gray-50 border border-gray-200 rounded-xl cursor-pointer">
             <input type="checkbox" id="chk-pranzo-pasta" checked onchange="updateAll()" class="w-4 h-4 rounded text-black focus:ring-black">
-            <span class="text-xs font-medium text-gray-700">🍝 100g Pasta (355 kcal)</span>
+            <span class="text-xs font-medium text-gray-700">🍝 100g Pasta</span>
           </label>
           <label class="flex items-center gap-2 p-2.5 bg-gray-50 border border-gray-200 rounded-xl cursor-pointer">
             <input type="checkbox" id="chk-pranzo-olio" checked onchange="updateAll()" class="w-4 h-4 rounded text-black focus:ring-black">
-            <span class="text-xs font-medium text-gray-700">🫒 1 cucchiaio Olio (90 kcal)</span>
+            <span class="text-xs font-medium text-gray-700">🫒 10g Olio EVO</span>
           </label>
         </div>
 
@@ -113,7 +111,7 @@ Html
       <!-- Pranzo: Piatto Unico Legumi -->
       <div id="pranzo-mode-legumi" class="hidden space-y-3">
         <div>
-          <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">Piatto Unico a base di Legumi</label>
+          <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">Legumi</label>
           <select id="sel-pranzo-legumi" onchange="updateAll()" class="w-full p-2.5 bg-gray-50 border border-gray-300 rounded-xl text-sm outline-none focus:ring-2 focus:ring-black">
             <option value="none">-- Seleziona legume --</option>
           </select>
@@ -148,8 +146,8 @@ Html
 
       <!-- Switch Modalità Cena -->
       <div class="flex bg-gray-100 p-1 rounded-xl mb-3 text-xs font-semibold">
-        <button id="btn-cena-classico" onclick="switchCenaMode('classico')" class="flex-1 py-1.5 rounded-lg bg-white shadow-sm">Classico (Proteina + Carbo + Olio)</button>
-        <button id="btn-cena-legumi" onclick="switchCenaMode('legumi')" class="flex-1 py-1.5 rounded-lg text-gray-500">Piatto Unico (Legumi)</button>
+        <button id="btn-cena-classico" onclick="switchCenaMode('classico')" class="flex-1 py-1.5 rounded-lg bg-white shadow-sm">Proteina</button>
+        <button id="btn-cena-legumi" onclick="switchCenaMode('legumi')" class="flex-1 py-1.5 rounded-lg text-gray-500">Legumi</button>
       </div>
 
       <!-- Cena: Componibile Classico -->
@@ -165,23 +163,23 @@ Html
           <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">Fonte di Carboidrati</label>
           <select id="sel-cena-carb" onchange="updateAll()" class="w-full p-2.5 bg-gray-50 border border-gray-300 rounded-xl text-sm outline-none focus:ring-2 focus:ring-black">
             <option value="none">-- Seleziona carboidrato --</option>
-            <option value="pane">70g Pane (190 kcal • 6g P • 36g C • 1g G)</option>
-            <option value="patate">250g Patate (200 kcal • 4.5g P • 43g C • 0.5g G)</option>
-            <option value="riso">65g Riso (230 kcal • 5g P • 51g C • 0.5g G)</option>
+            <option value="pane">70g Pane</option>
+            <option value="patate">250g Patate</option>
+            <option value="riso">65g Riso</option>
           </select>
         </div>
 
         <!-- Olio Cena indipendente -->
         <label class="flex items-center gap-2 p-2.5 bg-gray-50 border border-gray-200 rounded-xl cursor-pointer">
           <input type="checkbox" id="chk-cena-olio" checked onchange="updateAll()" class="w-4 h-4 rounded text-black focus:ring-black">
-          <span class="text-xs font-medium text-gray-700">🫒 1 cucchiaio Olio EVO (10g) (90 kcal • 10g G)</span>
+          <span class="text-xs font-medium text-gray-700">🫒 10g Olio EVO</span>
         </label>
       </div>
 
       <!-- Cena: Piatto Unico Legumi -->
       <div id="cena-mode-legumi" class="hidden space-y-3">
         <div>
-          <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">Piatto Unico a base di Legumi</label>
+          <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">Legumi</label>
           <select id="sel-cena-legumi" onchange="updateAll()" class="w-full p-2.5 bg-gray-50 border border-gray-300 rounded-xl text-sm outline-none focus:ring-2 focus:ring-black">
             <option value="none">-- Seleziona legume --</option>
           </select>
