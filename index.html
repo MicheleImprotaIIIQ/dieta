@@ -65,7 +65,7 @@
       <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">Scegli la tua opzione</label>
       <select id="sel-colazione" onchange="updateAll()" class="w-full p-2.5 bg-gray-50 border border-gray-300 rounded-xl text-sm outline-none focus:ring-2 focus:ring-black">
         <option value="none">-- Seleziona Colazione --</option>
-        <option value="1">Salmone: 50g Pane + 50g Salmone + 1/4 Avocado + 200ml Latte 0%</option>
+        <option value="1">Salmone: 50g Pane + 50g Salmone + 1/4 Avocado + 200ml Latte parz. scremato</option>
         <option value="2">Philadelphia: 50g Pane + 30g Philadelphia + 1 Uovo + 100ml Albume</option>
         <option value="3">Uovo: 50g Pane + 1 Uovo + 100ml Albume + 1/4 Avocado</option>
         <option value="4">Avena: 200g Yogurt greco 0% + 45g Avena + 10g Miele + 10g Noci</option>
@@ -218,9 +218,9 @@
       { id: "lenticchie_secche", name: "110g Lenticchie secche + 30g Pane + Olio", p: 30, c: 72, f: 15, kcal: 570 }
     ];
 
-    // COLAZIONI
+    // COLAZIONI (Opzione 1 aggiornata con latte parzialmente scremato: 415 kcal, 21P, 36C, 19F)
     const COLAZIONI = {
-      "1": { p: 21, c: 36, f: 16, kcal: 390 },
+      "1": { p: 21, c: 36, f: 19, kcal: 415 },
       "2": { p: 24, c: 27, f: 14, kcal: 335 },
       "3": { p: 23, c: 29, f: 12, kcal: 315 },
       "4": { p: 28, c: 47, f: 10, kcal: 380 }
@@ -229,8 +229,7 @@
     // MERENDA
     const MERENDA = { p: 5.5, c: 60, f: 2, kcal: 270 };
 
-    // COMPONENTI FISSI AGGIORNATI
-    // 120g di pasta: 426 kcal, 14.4g P, 87.6g C, 1.8g F
+    // COMPONENTI FISSI
     const PASTA_PRANZO = { p: 14.4, c: 87.6, f: 1.8, kcal: 426 };
     const OLIO_EVO = { p: 0, c: 0, f: 10, kcal: 90 };
 
@@ -340,7 +339,6 @@
           cMeal.kcal += prot.kcal; cMeal.p += prot.p; cMeal.c += prot.c; cMeal.f += prot.f;
         }
         const carbId = document.getElementById('sel-cena-carb').value;
-        // 100g Pane: 270 kcal, 8.5g P, 51g C, 1.5g F
         if (carbId === 'pane')   { cMeal.kcal += 270; cMeal.p += 8.5; cMeal.c += 51; cMeal.f += 1.5; }
         if (carbId === 'patate') { cMeal.kcal += 200; cMeal.p += 4.5; cMeal.c += 43; cMeal.f += 0.5; }
         if (carbId === 'riso')   { cMeal.kcal += 230; cMeal.p += 5;   cMeal.c += 51; cMeal.f += 0.5; }
