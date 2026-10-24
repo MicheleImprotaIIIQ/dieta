@@ -87,11 +87,11 @@
 
       <!-- Pranzo: Componibile Classico -->
       <div id="pranzo-mode-classico" class="space-y-3">
-        <!-- 1. PASTA E OLIO ORA MESSI SOPRA LA SCELTA PROTEICA -->
+        <!-- 1. PASTA E OLIO SOPRA LA PROTEINA -->
         <div class="grid grid-cols-2 gap-2 pb-1">
           <label class="flex items-center gap-2 p-2.5 bg-gray-50 border border-gray-200 rounded-xl cursor-pointer">
             <input type="checkbox" id="chk-pranzo-pasta" checked onchange="updateAll()" class="w-4 h-4 rounded text-black focus:ring-black">
-            <span class="text-xs font-medium text-gray-700">🍝 100g Pasta</span>
+            <span class="text-xs font-medium text-gray-700">🍝 120g Pasta</span>
           </label>
           <label class="flex items-center gap-2 p-2.5 bg-gray-50 border border-gray-200 rounded-xl cursor-pointer">
             <input type="checkbox" id="chk-pranzo-olio" checked onchange="updateAll()" class="w-4 h-4 rounded text-black focus:ring-black">
@@ -163,7 +163,7 @@
           <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">Fonte di Carboidrati</label>
           <select id="sel-cena-carb" onchange="updateAll()" class="w-full p-2.5 bg-gray-50 border border-gray-300 rounded-xl text-sm outline-none focus:ring-2 focus:ring-black">
             <option value="none">-- Seleziona carboidrato --</option>
-            <option value="pane">70g Pane</option>
+            <option value="pane">100g Pane</option>
             <option value="patate">250g Patate</option>
             <option value="riso">65g Riso</option>
           </select>
@@ -229,8 +229,9 @@
     // MERENDA
     const MERENDA = { p: 5.5, c: 60, f: 2, kcal: 270 };
 
-    // COMPONENTI FISSI
-    const PASTA_PRANZO = { p: 12, c: 73, f: 1.5, kcal: 355 };
+    // COMPONENTI FISSI AGGIORNATI
+    // 120g di pasta: 426 kcal, 14.4g P, 87.6g C, 1.8g F
+    const PASTA_PRANZO = { p: 14.4, c: 87.6, f: 1.8, kcal: 426 };
     const OLIO_EVO = { p: 0, c: 0, f: 10, kcal: 90 };
 
     let state = {
@@ -263,11 +264,9 @@
 
       const chkPasta = document.getElementById('chk-pranzo-pasta');
       if (mode === 'legumi') {
-        // Disattiva e toglie la spunta alla pasta se si scelgono i legumi
         chkPasta.checked = false;
         chkPasta.disabled = true;
       } else {
-        // Riattiva e rimette la spunta alla pasta tornando su classico
         chkPasta.disabled = false;
         chkPasta.checked = true;
       }
@@ -300,7 +299,7 @@
       // 2. PRANZO
       let pMeal = { kcal: 0, p: 0, c: 0, f: 0 };
       if (state.pranzoMode === 'classico') {
-        // Pasta 100g
+        // Pasta 120g
         if (document.getElementById('chk-pranzo-pasta').checked) {
           pMeal.kcal += PASTA_PRANZO.kcal; pMeal.p += PASTA_PRANZO.p; pMeal.c += PASTA_PRANZO.c; pMeal.f += PASTA_PRANZO.f;
         }
@@ -341,7 +340,8 @@
           cMeal.kcal += prot.kcal; cMeal.p += prot.p; cMeal.c += prot.c; cMeal.f += prot.f;
         }
         const carbId = document.getElementById('sel-cena-carb').value;
-        if (carbId === 'pane')   { cMeal.kcal += 190; cMeal.p += 6;   cMeal.c += 36; cMeal.f += 1; }
+        // 100g Pane: 270 kcal, 8.5g P, 51g C, 1.5g F
+        if (carbId === 'pane')   { cMeal.kcal += 270; cMeal.p += 8.5; cMeal.c += 51; cMeal.f += 1.5; }
         if (carbId === 'patate') { cMeal.kcal += 200; cMeal.p += 4.5; cMeal.c += 43; cMeal.f += 0.5; }
         if (carbId === 'riso')   { cMeal.kcal += 230; cMeal.p += 5;   cMeal.c += 51; cMeal.f += 0.5; }
         if (document.getElementById('chk-cena-olio').checked) {
