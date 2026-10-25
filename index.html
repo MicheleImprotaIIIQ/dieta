@@ -20,7 +20,7 @@
         <div class="flex items-center gap-2">
           <h1 class="text-xl font-bold tracking-tight">Oggi • 2000 kcal</h1>
           <span id="sync-badge" class="text-[10px] bg-emerald-100 dark:bg-emerald-950/80 text-emerald-700 dark:text-emerald-300 px-2 py-0.5 rounded-full font-semibold">☁️ Connesso</span>
-          <!-- TASTO TEMA NOTTURNO (ACCANTO ALLO STATUS) -->
+          <!-- TASTO TEMA NOTTURNO -->
           <button id="theme-toggle" onclick="toggleTheme()" class="p-1.5 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 transition text-sm flex items-center justify-center" title="Cambia tema chiaro/notturno">
             <span id="theme-icon">🌙</span>
           </button>
@@ -186,7 +186,7 @@
       </div>
     </div>
 
-    <!-- 6. EXTRA / LIBERO CON IA CUMULATIVO -->
+    <!-- 5. EXTRA / LIBERO CON IA CUMULATIVO -->
     <div class="bg-white dark:bg-gray-800 rounded-2xl p-4 shadow-sm border border-gray-200 dark:border-gray-700 transition-colors">
       <div class="flex items-center justify-between mb-2">
         <h2 class="font-bold text-lg flex items-center gap-2">✨ Extra / Libero (IA)</h2>
@@ -297,9 +297,6 @@
       aiMeals: []
     };
 
-    let currentRemaining = { kcal: 2000, p: 120, c: 245, f: 55 };
-
-    // GESTIONE TEMA NOTTURNO
     function initTheme() {
       const savedTheme = localStorage.getItem('theme');
       if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
@@ -369,41 +366,6 @@
       document.getElementById('btn-cena-classico').className = mode === 'classico' ? activeCls : inactiveCls;
       document.getElementById('btn-cena-legumi').className = mode === 'legumi' ? activeCls : inactiveCls;
       triggerUpdate();
-    }
-
-    async function askMacroAdvice() {
-      const status = document.getElementById('advisor-status');
-      const resultBox = document.getElementById('advisor-result');
-      const btn = document.getElementById('btn-advisor');
-      const preference = document.getElementById('advisor-input').value.trim();
-
-      status.innerText = "L'IA sta calcolando la combinazione ideale...";
-      status.className = "text-xs text-center py-1 font-medium text-indigo-700 dark:text-indigo-300 block";
-      resultBox.classList.add('hidden');
-      btn.disabled = true;
-
-      const remText = `${currentRemaining.kcal} kcal, ${currentRemaining.p}g proteine, ${currentRemaining.c}g carboidrati, ${currentRemaining.f}g grassi`;
-      
-      let prompt = `Sei un nutrizionista esperto. All'utente mancano ESATTAMENTE questi macronutrienti per completare la giornata: ${remText}. `;
-      if (preference) {
-        prompt += `L'utente vorrebbe mangiare qualcosa a base di: "${preference}". Dimmi esattamente quanti grammi di questo alimento (o abbinamento ideale) deve pesare per colmare al meglio questo disavanzo. `;
-      } else {
-        prompt += `Fornisci 2 o 3 opzioni pratiche e veloci (con cibi comuni) indicando le GRAMMATURE ESATTE da pesare sulla bilancia per colmare questi macro. `;
-      }
-      prompt += `Rispondi in italiano in modo sintetico, amichevole ed elenca per ciascuna opzione i grammi esatti dell'alimento e i macro che apporta.`;
-
-      try {
-        const response = await fetch(`https://text.pollinations.ai/${encodeURIComponent(prompt)}`);
-        const text = await response.text();
-        resultBox.innerHTML = text.replace(/\n/g, '<br>');
-        resultBox.classList.remove('hidden');
-        status.className = "hidden";
-      } catch (err) {
-        status.innerText = "Errore di connessione. Riprova tra poco.";
-        status.className = "text-xs text-center py-1 font-medium text-red-500 block";
-      } finally {
-        btn.disabled = false;
-      }
     }
 
     async function analyzeFoodWithAI() {
@@ -593,15 +555,6 @@
       state.aiMeals.forEach(m => {
         tot.kcal += m.kcal; tot.p += m.p; tot.c += m.c; tot.f += m.f;
       });
-
-      // Calcolo differenze per il consigliere IA
-      currentRemaining.kcal = Math.max(0, Math.round(2000 - tot.kcal));
-      currentRemaining.p = Math.max(0, Math.round(120 - tot.p));
-      currentRemaining.c = Math.max(0, Math.round(245 - tot.c));
-      currentRemaining.f = Math.max(0, Math.round(55 - tot.f));
-
-      document.getElementById('advisor-remaining').innerText = 
-        `Mancano: ${currentRemaining.kcal} kcal • ${currentRemaining.p}P ${currentRemaining.c}C ${currentRemaining.f}G`;
 
       // Barre in alto
       document.getElementById('cal-count').innerText = `${Math.round(tot.kcal)} / 2000`;
