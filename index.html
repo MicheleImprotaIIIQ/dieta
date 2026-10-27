@@ -288,14 +288,23 @@
       </div>
     </div>
 
-    <!-- 6. GESTIONE, MODIFICA ED ELIMINAZIONE ALIMENTI -->
+    <!-- 6. GESTIONE, MODIFICA ED ELIMINAZIONE ALIMENTI (A SCOMPARSA / ACCORDION) -->
     <div class="bg-white dark:bg-gray-800 rounded-2xl p-4 shadow-sm border border-gray-200 dark:border-gray-700 transition-colors">
-      <div class="flex items-center justify-between mb-2">
-        <h2 class="font-bold text-lg flex items-center gap-2">🛠️ Gestione & Modifica Alimenti</h2>
+      <!-- Intestazione cliccabile con freccia -->
+      <div onclick="toggleFoodEditorAccordion()" class="flex items-center justify-between cursor-pointer select-none">
+        <div>
+          <h2 class="font-bold text-lg flex items-center gap-2">🛠️ Gestione & Modifica Alimenti</h2>
+          <p class="text-xs text-gray-500 dark:text-gray-400 mt-0.5">Tocca per aprire o chiudere la gestione dei cibi</p>
+        </div>
+        <button type="button" class="p-1.5 text-gray-400 dark:text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition">
+          <svg id="editor-chevron" class="w-5 h-5 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </button>
       </div>
-      <p class="text-xs text-gray-500 dark:text-gray-400 mb-3">Modifica i cibi esistenti, creane di nuovi, assegnali a più pasti contemporaneamente oppure eliminali dalle liste.</p>
 
-      <div class="space-y-3">
+      <!-- Contenitore a scomparsa (chiuso di default) -->
+      <div id="food-editor-body" class="hidden space-y-3 pt-3 border-t border-gray-100 dark:border-gray-700/60 mt-3">
         <!-- Selettore per scegliere se creare o modificare/eliminare -->
         <div>
           <label class="block text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-1">Seleziona cosa fare</label>
@@ -493,7 +502,7 @@
       wheyMeal: 'none',
       aiMeals: [],
       customFoods: [],
-      deletedFoodIds: [] // Elenco ID alimenti eliminati dall'utente
+      deletedFoodIds: []
     };
 
     function initTheme() {
@@ -515,7 +524,18 @@
       switchCenaMode(state.cenaMode);
     }
 
-    // Unione cibi default + cibi personalizzati/modificati - cibi eliminati
+    // GESTIONE APERTURA/CHIUSURA ACCORDION SEZIONE MODIFICA ALIMENTI
+    function toggleFoodEditorAccordion() {
+      const body = document.getElementById('food-editor-body');
+      const chevron = document.getElementById('editor-chevron');
+      const isHidden = body.classList.toggle('hidden');
+      if (isHidden) {
+        chevron.classList.remove('rotate-180');
+      } else {
+        chevron.classList.add('rotate-180');
+      }
+    }
+
     function getAllFoods() {
       const list = [];
       const customMap = new Map();
@@ -542,7 +562,6 @@
       return getAllFoods().filter(x => Array.isArray(x.destinations) && x.destinations.includes(dest));
     }
 
-    // GESTIONE EDITOR ALIMENTI
     function populateFoodEditorSelect() {
       const sel = document.getElementById('food-editor-select');
       const cur = sel.value;
@@ -623,7 +642,7 @@
 
           const isModifiedDefault = DEFAULT_FOODS.some(d => d.id === food.id) && state.customFoods.some(c => c.id === food.id);
           resetBtn.classList.toggle('hidden', !isModifiedDefault);
-          deleteBtn.classList.remove('hidden'); // Sempre visibile per poter eliminare l'alimento selezionato
+          deleteBtn.classList.remove('hidden');
         }
       }
     }
@@ -696,7 +715,6 @@
       }
     }
 
-    // ELIMINAZIONE DI UN ALIMENTO DALLE LISTE
     function deleteFoodFromEditor() {
       const selVal = document.getElementById('food-editor-select').value;
       if (selVal === 'new') return;
@@ -715,7 +733,6 @@
           }
         }
 
-        // Se l'alimento era attualmente selezionato nei pasti, resettalo a 'none'
         if (document.getElementById('sel-colazione').value === selVal) document.getElementById('sel-colazione').value = 'none';
         if (document.getElementById('sel-pranzo-primo').value === selVal) document.getElementById('sel-pranzo-primo').value = 'none';
         if (document.getElementById('sel-pranzo-prot').value === selVal) document.getElementById('sel-pranzo-prot').value = 'none';
@@ -738,7 +755,6 @@
       }
     }
 
-    // POPOLAMENTO MENU DEI PASTI
     function renderAllSelects() {
       // 1. Colazione
       const selCol = document.getElementById('sel-colazione');
@@ -779,7 +795,7 @@
       });
       selPLeg.value = curPLeg && selPLeg.querySelector(`option[value="${curPLeg}"]`) ? curPLeg : 'none';
 
-      // 5. Merenda (Solo lista)
+      // 5. Merenda
       const selMer = document.getElementById('sel-merenda');
       const curMer = selMer.value || 'none';
       selMer.innerHTML = `<option value="none">-- Seleziona Merenda --</option>`;
@@ -1183,7 +1199,7 @@
       tot.kcal += pMeal.kcal; tot.p += pMeal.p; tot.c += pMeal.c; tot.f += pMeal.f;
       document.getElementById('pranzo-macro').innerText = `${Math.round(pMeal.kcal)} kcal • ${Math.round(pMeal.p)}P ${Math.round(pMeal.c)}C ${Math.round(pMeal.f)}G`;
 
-      // 3. Merenda (Calcolata direttamente dalla selezione del menù)
+      // 3. Merenda
       let mMeal = { kcal: 0, p: 0, c: 0, f: 0 };
       const merVal = document.getElementById('sel-merenda').value;
       if (merVal && merVal !== 'none') {
