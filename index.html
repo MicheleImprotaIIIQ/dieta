@@ -86,6 +86,12 @@
         <option value="3">Uovo: 50g Pane + 1 Uovo + 100ml Albume + 1/4 Avocado</option>
         <option value="4">Avena: 200g Yogurt greco 0% + 45g Avena + 10g Miele + 10g Noci</option>
       </select>
+
+      <!-- Proteine in Polvere Colazione -->
+      <label id="lbl-whey-colazione" class="flex items-center gap-2 p-2.5 mt-2.5 bg-gray-50 dark:bg-gray-700/60 border border-gray-200 dark:border-gray-600 rounded-xl cursor-pointer transition">
+        <input type="checkbox" id="chk-whey-colazione" onchange="handleWheyToggle('colazione')" class="w-4 h-4 rounded text-black dark:text-white focus:ring-black">
+        <span class="text-xs font-medium text-gray-700 dark:text-gray-200">🥛 30g Proteine in polvere (111 kcal • 23.7P • 1.8C • 1G)</span>
+      </label>
     </div>
 
     <!-- 2. PRANZO -->
@@ -96,20 +102,32 @@
       </div>
 
       <div class="flex bg-gray-100 dark:bg-gray-700/80 p-1 rounded-xl mb-3 text-xs font-semibold">
-        <button id="btn-pranzo-classico" onclick="switchPranzoMode('classico')" class="flex-1 py-1.5 rounded-lg bg-white dark:bg-gray-600 text-gray-800 dark:text-white shadow-sm font-semibold">Pasta</button>
+        <button id="btn-pranzo-classico" onclick="switchPranzoMode('classico')" class="flex-1 py-1.5 rounded-lg bg-white dark:bg-gray-600 text-gray-800 dark:text-white shadow-sm font-semibold">Classico</button>
         <button id="btn-pranzo-legumi" onclick="switchPranzoMode('legumi')" class="flex-1 py-1.5 rounded-lg text-gray-500 dark:text-gray-300 font-semibold">Legumi</button>
       </div>
 
       <div id="pranzo-mode-classico" class="space-y-3">
-        <div class="grid grid-cols-2 gap-2 pb-1">
-          <label class="flex items-center gap-2 p-2.5 bg-gray-50 dark:bg-gray-700/60 border border-gray-200 dark:border-gray-600 rounded-xl cursor-pointer">
-            <input type="checkbox" id="chk-pranzo-pasta" onchange="triggerUpdate()" class="w-4 h-4 rounded text-black dark:text-white focus:ring-black">
-            <span class="text-xs font-medium text-gray-700 dark:text-gray-200">🍝 120g Pasta</span>
-          </label>
-          <label class="flex items-center gap-2 p-2.5 bg-gray-50 dark:bg-gray-700/60 border border-gray-200 dark:border-gray-600 rounded-xl cursor-pointer">
-            <input type="checkbox" id="chk-pranzo-olio" onchange="triggerUpdate()" class="w-4 h-4 rounded text-black focus:ring-black">
-            <span class="text-xs font-medium text-gray-700 dark:text-gray-200">🫒 10g Olio EVO</span>
-          </label>
+        <!-- Riquadro Primo Piatto (Menù a tendina) & Olio EVO a grammatura libera -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 pb-1">
+          <div>
+            <label class="block text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-1">Primo piatto</label>
+            <select id="sel-pranzo-primo" onchange="triggerUpdate()" class="w-full p-2.5 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-800 dark:text-gray-100 rounded-xl text-sm outline-none focus:ring-2 focus:ring-black dark:focus:ring-white">
+              <option value="none">-- Nessun primo --</option>
+              <option value="pasta120">🍝 120g Pasta (426 kcal)</option>
+              <option value="pappardelle130">🍝 130g Pappardelle all'uovo (485 kcal)</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-1">Condimento</label>
+            <div class="flex items-center justify-between p-2 bg-gray-50 dark:bg-gray-700/60 border border-gray-300 dark:border-gray-600 rounded-xl h-[42px] px-3">
+              <span class="text-xs font-medium text-gray-700 dark:text-gray-200">🫒 Olio EVO:</span>
+              <div class="flex items-center gap-1">
+                <input type="number" id="input-pranzo-olio" min="0" max="100" step="1" placeholder="0" oninput="triggerUpdate()" class="w-14 p-1 text-center bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg text-xs font-bold text-gray-800 dark:text-gray-100 outline-none focus:ring-1 focus:ring-black dark:focus:ring-white">
+                <span class="text-xs text-gray-500 dark:text-gray-400">g</span>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div>
@@ -118,6 +136,12 @@
             <option value="none">-- Seleziona proteina --</option>
           </select>
         </div>
+
+        <!-- Proteine in Polvere Pranzo -->
+        <label id="lbl-whey-pranzo" class="flex items-center gap-2 p-2.5 bg-gray-50 dark:bg-gray-700/60 border border-gray-200 dark:border-gray-600 rounded-xl cursor-pointer transition">
+          <input type="checkbox" id="chk-whey-pranzo" onchange="handleWheyToggle('pranzo')" class="w-4 h-4 rounded text-black dark:text-white focus:ring-black">
+          <span class="text-xs font-medium text-gray-700 dark:text-gray-200">🥛 30g Proteine in polvere (111 kcal • 23.7P • 1.8C • 1G)</span>
+        </label>
       </div>
 
       <div id="pranzo-mode-legumi" class="hidden space-y-3">
@@ -156,7 +180,7 @@
       </div>
 
       <div class="flex bg-gray-100 dark:bg-gray-700/80 p-1 rounded-xl mb-3 text-xs font-semibold">
-        <button id="btn-cena-classico" onclick="switchCenaMode('classico')" class="flex-1 py-1.5 rounded-lg bg-white dark:bg-gray-600 text-gray-800 dark:text-white shadow-sm font-semibold">Proteina</button>
+        <button id="btn-cena-classico" onclick="switchCenaMode('classico')" class="flex-1 py-1.5 rounded-lg bg-white dark:bg-gray-600 text-gray-800 dark:text-white shadow-sm font-semibold">Classico</button>
         <button id="btn-cena-legumi" onclick="switchCenaMode('legumi')" class="flex-1 py-1.5 rounded-lg text-gray-500 dark:text-gray-300 font-semibold">Legumi</button>
       </div>
 
@@ -172,15 +196,25 @@
           <label class="block text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-1">Fonte di Carboidrati</label>
           <select id="sel-cena-carb" onchange="triggerUpdate()" class="w-full p-2.5 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-800 dark:text-gray-100 rounded-xl text-sm outline-none focus:ring-2 focus:ring-black dark:focus:ring-white">
             <option value="none">-- Seleziona carboidrato --</option>
-            <option value="pane">100g Pane</option>
-            <option value="patate">250g Patate</option>
-            <option value="riso">65g Riso</option>
+            <option value="pane">100g Pane (270 kcal)</option>
+            <option value="patate">250g Patate (200 kcal)</option>
+            <option value="riso">65g Riso (230 kcal)</option>
           </select>
         </div>
 
-        <label class="flex items-center gap-2 p-2.5 bg-gray-50 dark:bg-gray-700/60 border border-gray-200 dark:border-gray-600 rounded-xl cursor-pointer">
-          <input type="checkbox" id="chk-cena-olio" onchange="triggerUpdate()" class="w-4 h-4 rounded text-black dark:text-white focus:ring-black">
-          <span class="text-xs font-medium text-gray-700 dark:text-gray-200">🫒 10g Olio EVO</span>
+        <!-- Olio EVO a grammatura libera Cena -->
+        <div class="flex items-center justify-between p-2 bg-gray-50 dark:bg-gray-700/60 border border-gray-300 dark:border-gray-600 rounded-xl h-[42px] px-3">
+          <span class="text-xs font-medium text-gray-700 dark:text-gray-200">🫒 Olio EVO:</span>
+          <div class="flex items-center gap-1">
+            <input type="number" id="input-cena-olio" min="0" max="100" step="1" placeholder="0" oninput="triggerUpdate()" class="w-14 p-1 text-center bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg text-xs font-bold text-gray-800 dark:text-gray-100 outline-none focus:ring-1 focus:ring-black dark:focus:ring-white">
+            <span class="text-xs text-gray-500 dark:text-gray-400">g</span>
+          </div>
+        </div>
+
+        <!-- Proteine in Polvere Cena -->
+        <label id="lbl-whey-cena" class="flex items-center gap-2 p-2.5 bg-gray-50 dark:bg-gray-700/60 border border-gray-200 dark:border-gray-600 rounded-xl cursor-pointer transition">
+          <input type="checkbox" id="chk-whey-cena" onchange="handleWheyToggle('cena')" class="w-4 h-4 rounded text-black dark:text-white focus:ring-black">
+          <span class="text-xs font-medium text-gray-700 dark:text-gray-200">🥛 30g Proteine in polvere (111 kcal • 23.7P • 1.8C • 1G)</span>
         </label>
       </div>
 
@@ -296,12 +330,20 @@
     };
 
     const MERENDA = { p: 5.5, c: 60, f: 2, kcal: 270 };
-    const PASTA_PRANZO = { p: 14.4, c: 87.6, f: 1.8, kcal: 426 };
-    const OLIO_EVO = { p: 0, c: 0, f: 10, kcal: 90 };
+
+    // Opzioni Primi Piatti Pranzo
+    const PRIMI_PRANZO = {
+      "pasta120": { p: 14.4, c: 87.6, f: 1.8, kcal: 426 },
+      "pappardelle130": { p: 17.0, c: 89.7, f: 5.2, kcal: 485 }
+    };
+
+    // Dose 30g Proteine in Polvere
+    const WHEY_DOSE = { p: 23.7, c: 1.8, f: 1.0, kcal: 111 };
 
     let state = {
       pranzoMode: 'classico',
       cenaMode: 'classico',
+      wheyMeal: 'none', // 'colazione', 'pranzo', 'cena' o 'none'
       aiMeals: []
     };
 
@@ -340,6 +382,43 @@
       });
     }
 
+    // Gestione Proteine in Polvere esclusiva
+    function handleWheyToggle(meal) {
+      const chk = document.getElementById(`chk-whey-${meal}`);
+      if (chk.checked) {
+        state.wheyMeal = meal;
+      } else {
+        if (state.wheyMeal === meal) state.wheyMeal = 'none';
+      }
+      applyWheyUI();
+      triggerUpdate();
+    }
+
+    function applyWheyUI() {
+      ['colazione', 'pranzo', 'cena'].forEach(m => {
+        const chk = document.getElementById(`chk-whey-${m}`);
+        const lbl = document.getElementById(`lbl-whey-${m}`);
+        if (!chk || !lbl) return;
+
+        if (state.wheyMeal === m) {
+          chk.checked = true;
+          chk.disabled = false;
+          lbl.classList.remove('opacity-40', 'cursor-not-allowed');
+          lbl.classList.add('cursor-pointer');
+        } else if (state.wheyMeal !== 'none') {
+          chk.checked = false;
+          chk.disabled = true;
+          lbl.classList.add('opacity-40', 'cursor-not-allowed');
+          lbl.classList.remove('cursor-pointer');
+        } else {
+          chk.checked = false;
+          chk.disabled = false;
+          lbl.classList.remove('opacity-40', 'cursor-not-allowed');
+          lbl.classList.add('cursor-pointer');
+        }
+      });
+    }
+
     function switchPranzoMode(mode) {
       state.pranzoMode = mode;
       document.getElementById('pranzo-mode-classico').classList.toggle('hidden', mode !== 'classico');
@@ -352,12 +431,12 @@
       document.getElementById('btn-pranzo-classico').className = mode === 'classico' ? activeCls : inactiveCls;
       document.getElementById('btn-pranzo-legumi').className = mode === 'legumi' ? activeCls : inactiveCls;
 
-      const chkPasta = document.getElementById('chk-pranzo-pasta');
+      const selPrimo = document.getElementById('sel-pranzo-primo');
       if (mode === 'legumi') {
-        chkPasta.checked = false;
-        chkPasta.disabled = true;
+        selPrimo.value = 'none';
+        selPrimo.disabled = true;
       } else {
-        chkPasta.disabled = false;
+        selPrimo.disabled = false;
       }
       triggerUpdate();
     }
@@ -376,6 +455,7 @@
       triggerUpdate();
     }
 
+    // ANALISI IA POTENZIATA CON DOPPIO FALLBACK ROBUSTO
     async function analyzeFoodWithAI() {
       const inputEl = document.getElementById('ai-input');
       const text = inputEl.value.trim();
@@ -388,21 +468,61 @@
       btn.disabled = true;
 
       try {
-        const prompt = `Analizza: "${text}". Rispondi SOLO con JSON: {"titolo": "nome", "kcal": 0, "p": 0, "c": 0, "f": 0}`;
-        const response = await fetch(`https://text.pollinations.ai/${encodeURIComponent(prompt)}?json=true`);
+        const prompt = `Analizza questo cibo e porzione: "${text}".
+Calcola i macronutrienti totali stimati.
+Rispondi ESCLUSIVAMENTE con un JSON valido con queste chiavi esatte e valori numerici:
+{"titolo": "nome sintetico", "kcal": 0, "p": 0, "c": 0, "f": 0}
+Non aggiungere spiegazioni, premesse o testo fuori dal JSON.`;
+
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 12000);
+
+        const response = await fetch(`https://text.pollinations.ai/${encodeURIComponent(prompt)}?json=true`, {
+          signal: controller.signal
+        });
+        clearTimeout(timeoutId);
+
         const raw = await response.text();
-        let clean = raw.replace(/```json/g, '').replace(/```/g, '').trim();
-        const jsonMatch = clean.match(/\{[\s\S]*\}/);
-        if (jsonMatch) clean = jsonMatch[0];
-        const data = JSON.parse(clean);
+        let clean = raw.replace(/```json/gi, '').replace(/```/g, '').trim();
+        const jsonMatch = clean.match(/\{[\s\S]*?\}/);
+
+        let kcal = 0, p = 0, c = 0, f = 0, title = text;
+        let parsed = null;
+
+        if (jsonMatch) {
+          try { parsed = JSON.parse(jsonMatch[0]); } catch(e){}
+        }
+
+        if (parsed) {
+          kcal = Number(parsed.kcal ?? parsed.calorie ?? parsed.calories ?? 0);
+          p = Number(parsed.p ?? parsed.proteine ?? parsed.protein ?? 0);
+          c = Number(parsed.c ?? parsed.carboidrati ?? parsed.carbs ?? 0);
+          f = Number(parsed.f ?? parsed.grassi ?? parsed.fat ?? 0);
+          title = parsed.titolo || parsed.name || text;
+        } else {
+          // Fallback regex se l'IA risponde con testo discorsivo
+          const kM = raw.match(/(?:kcal|calorie|cal)[^\d]*(\d+(?:[.,]\d+)?)/i);
+          const pM = raw.match(/(?:proteine|protein|prot|p)[^\d]*(\d+(?:[.,]\d+)?)/i);
+          const cM = raw.match(/(?:carboidrati|carbs|carbo|c)[^\d]*(\d+(?:[.,]\d+)?)/i);
+          const fM = raw.match(/(?:grassi|fat|grass|f)[^\d]*(\d+(?:[.,]\d+)?)/i);
+
+          if (kM || pM || cM || fM) {
+            kcal = kM ? Math.round(parseFloat(kM[1].replace(',', '.'))) : 0;
+            p = pM ? Math.round(parseFloat(pM[1].replace(',', '.'))) : 0;
+            c = cM ? Math.round(parseFloat(cM[1].replace(',', '.'))) : 0;
+            f = fM ? Math.round(parseFloat(fM[1].replace(',', '.'))) : 0;
+          } else {
+            throw new Error("Dati non leggibili");
+          }
+        }
 
         state.aiMeals.push({
           id: Date.now(),
-          title: data.titolo || text,
-          kcal: Number(data.kcal) || 0,
-          p: Number(data.p) || 0,
-          c: Number(data.c) || 0,
-          f: Number(data.f) || 0
+          title: title,
+          kcal: isNaN(kcal) ? 0 : kcal,
+          p: isNaN(p) ? 0 : p,
+          c: isNaN(c) ? 0 : c,
+          f: isNaN(f) ? 0 : f
         });
 
         inputEl.value = '';
@@ -413,7 +533,7 @@
         renderAIList();
         triggerUpdate();
       } catch (err) {
-        status.innerText = 'Errore di calcolo. Riprova.';
+        status.innerText = 'Errore di risposta IA. Riprova specificando i grammi (es: 100g petto di pollo).';
         status.className = 'text-xs text-center py-1 text-red-500 font-medium block';
       } finally {
         btn.disabled = false;
@@ -452,16 +572,17 @@
       const data = {
         colazione: document.getElementById('sel-colazione').value,
         pranzoMode: state.pranzoMode,
+        pranzoPrimo: document.getElementById('sel-pranzo-primo').value,
         pranzoProt: document.getElementById('sel-pranzo-prot').value,
-        pranzoPasta: document.getElementById('chk-pranzo-pasta').checked,
-        pranzoOlio: document.getElementById('chk-pranzo-olio').checked,
+        pranzoOlioGrams: parseFloat(document.getElementById('input-pranzo-olio').value) || 0,
         pranzoLeg: document.getElementById('sel-pranzo-legumi').value,
         merenda: document.getElementById('chk-merenda').checked,
         cenaMode: state.cenaMode,
         cenaProt: document.getElementById('sel-cena-prot').value,
         cenaCarb: document.getElementById('sel-cena-carb').value,
-        cenaOlio: document.getElementById('chk-cena-olio').checked,
+        cenaOlioGrams: parseFloat(document.getElementById('input-cena-olio').value) || 0,
         cenaLeg: document.getElementById('sel-cena-legumi').value,
+        wheyMeal: state.wheyMeal,
         aiMeals: state.aiMeals
       };
 
@@ -474,16 +595,20 @@
       if (!d) return;
       document.getElementById('sel-colazione').value = d.colazione || 'none';
       if (d.pranzoMode && d.pranzoMode !== state.pranzoMode) switchPranzoMode(d.pranzoMode);
+      document.getElementById('sel-pranzo-primo').value = d.pranzoPrimo || 'none';
       document.getElementById('sel-pranzo-prot').value = d.pranzoProt || 'none';
-      document.getElementById('chk-pranzo-pasta').checked = !!d.pranzoPasta;
-      document.getElementById('chk-pranzo-olio').checked = !!d.pranzoOlio;
+      document.getElementById('input-pranzo-olio').value = (d.pranzoOlioGrams !== undefined && d.pranzoOlioGrams > 0) ? d.pranzoOlioGrams : '';
       document.getElementById('sel-pranzo-legumi').value = d.pranzoLeg || 'none';
       document.getElementById('chk-merenda').checked = !!d.merenda;
       if (d.cenaMode && d.cenaMode !== state.cenaMode) switchCenaMode(d.cenaMode);
       document.getElementById('sel-cena-prot').value = d.cenaProt || 'none';
       document.getElementById('sel-cena-carb').value = d.cenaCarb || 'none';
-      document.getElementById('chk-cena-olio').checked = !!d.cenaOlio;
+      document.getElementById('input-cena-olio').value = (d.cenaOlioGrams !== undefined && d.cenaOlioGrams > 0) ? d.cenaOlioGrams : '';
       document.getElementById('sel-cena-legumi').value = d.cenaLeg || 'none';
+
+      state.wheyMeal = d.wheyMeal || 'none';
+      applyWheyUI();
+
       if (Array.isArray(d.aiMeals)) state.aiMeals = d.aiMeals;
       renderAIList();
       updateTotalsUI();
@@ -493,34 +618,50 @@
       let tot = { kcal: 0, p: 0, c: 0, f: 0 };
 
       // 1. Colazione
+      let bMeal = { kcal: 0, p: 0, c: 0, f: 0 };
       const cVal = document.getElementById('sel-colazione').value;
       if (cVal !== 'none' && COLAZIONI[cVal]) {
         const col = COLAZIONI[cVal];
-        tot.kcal += col.kcal; tot.p += col.p; tot.c += col.c; tot.f += col.f;
-        document.getElementById('colazione-macro').innerText = `${col.kcal} kcal • ${col.p}P ${col.c}C ${col.f}G`;
-      } else {
-        document.getElementById('colazione-macro').innerText = `0 kcal`;
+        bMeal.kcal += col.kcal; bMeal.p += col.p; bMeal.c += col.c; bMeal.f += col.f;
       }
+      if (state.wheyMeal === 'colazione') {
+        bMeal.kcal += WHEY_DOSE.kcal; bMeal.p += WHEY_DOSE.p; bMeal.c += WHEY_DOSE.c; bMeal.f += WHEY_DOSE.f;
+      }
+      tot.kcal += bMeal.kcal; tot.p += bMeal.p; tot.c += bMeal.c; tot.f += bMeal.f;
+      document.getElementById('colazione-macro').innerText = `${Math.round(bMeal.kcal)} kcal • ${Math.round(bMeal.p)}P ${Math.round(bMeal.c)}C ${Math.round(bMeal.f)}G`;
 
       // 2. Pranzo
       let pMeal = { kcal: 0, p: 0, c: 0, f: 0 };
       if (state.pranzoMode === 'classico') {
-        if (document.getElementById('chk-pranzo-pasta').checked) {
-          pMeal.kcal += PASTA_PRANZO.kcal; pMeal.p += PASTA_PRANZO.p; pMeal.c += PASTA_PRANZO.c; pMeal.f += PASTA_PRANZO.f;
+        const primoVal = document.getElementById('sel-pranzo-primo').value;
+        if (primoVal !== 'none' && PRIMI_PRANZO[primoVal]) {
+          const primo = PRIMI_PRANZO[primoVal];
+          pMeal.kcal += primo.kcal; pMeal.p += primo.p; pMeal.c += primo.c; pMeal.f += primo.f;
         }
-        if (document.getElementById('chk-pranzo-olio').checked) {
-          pMeal.kcal += OLIO_EVO.kcal; pMeal.p += OLIO_EVO.p; pMeal.c += OLIO_EVO.c; pMeal.f += OLIO_EVO.f;
+
+        const pOlio = parseFloat(document.getElementById('input-pranzo-olio').value) || 0;
+        if (pOlio > 0) {
+          pMeal.kcal += pOlio * 9;
+          pMeal.f += pOlio;
         }
+
         const protId = document.getElementById('sel-pranzo-prot').value;
         if (protId !== 'none') {
           const prot = PROTEINE.find(x => x.id === protId);
           pMeal.kcal += prot.kcal; pMeal.p += prot.p; pMeal.c += prot.c; pMeal.f += prot.f;
+        }
+
+        if (state.wheyMeal === 'pranzo') {
+          pMeal.kcal += WHEY_DOSE.kcal; pMeal.p += WHEY_DOSE.p; pMeal.c += WHEY_DOSE.c; pMeal.f += WHEY_DOSE.f;
         }
       } else {
         const legId = document.getElementById('sel-pranzo-legumi').value;
         if (legId !== 'none') {
           const leg = LEGUMI.find(x => x.id === legId);
           pMeal.kcal += leg.kcal; pMeal.p += leg.p; pMeal.c += leg.c; pMeal.f += leg.f;
+        }
+        if (state.wheyMeal === 'pranzo') {
+          pMeal.kcal += WHEY_DOSE.kcal; pMeal.p += WHEY_DOSE.p; pMeal.c += WHEY_DOSE.c; pMeal.f += WHEY_DOSE.f;
         }
       }
       tot.kcal += pMeal.kcal; tot.p += pMeal.p; tot.c += pMeal.c; tot.f += pMeal.f;
@@ -542,18 +683,29 @@
           const prot = PROTEINE.find(x => x.id === protId);
           cMeal.kcal += prot.kcal; cMeal.p += prot.p; cMeal.c += prot.c; cMeal.f += prot.f;
         }
+
         const carbId = document.getElementById('sel-cena-carb').value;
         if (carbId === 'pane')   { cMeal.kcal += 270; cMeal.p += 8.5; cMeal.c += 51; cMeal.f += 1.5; }
         if (carbId === 'patate') { cMeal.kcal += 200; cMeal.p += 4.5; cMeal.c += 43; cMeal.f += 0.5; }
         if (carbId === 'riso')   { cMeal.kcal += 230; cMeal.p += 5;   cMeal.c += 51; cMeal.f += 0.5; }
-        if (document.getElementById('chk-cena-olio').checked) {
-          cMeal.kcal += OLIO_EVO.kcal; cMeal.p += OLIO_EVO.p; cMeal.c += OLIO_EVO.c; cMeal.f += OLIO_EVO.f;
+
+        const cOlio = parseFloat(document.getElementById('input-cena-olio').value) || 0;
+        if (cOlio > 0) {
+          cMeal.kcal += cOlio * 9;
+          cMeal.f += cOlio;
+        }
+
+        if (state.wheyMeal === 'cena') {
+          cMeal.kcal += WHEY_DOSE.kcal; cMeal.p += WHEY_DOSE.p; cMeal.c += WHEY_DOSE.c; cMeal.f += WHEY_DOSE.f;
         }
       } else {
         const legId = document.getElementById('sel-cena-legumi').value;
         if (legId !== 'none') {
           const leg = LEGUMI.find(x => x.id === legId);
           cMeal.kcal += leg.kcal; cMeal.p += leg.p; cMeal.c += leg.c; cMeal.f += leg.f;
+        }
+        if (state.wheyMeal === 'cena') {
+          cMeal.kcal += WHEY_DOSE.kcal; cMeal.p += WHEY_DOSE.p; cMeal.c += WHEY_DOSE.c; cMeal.f += WHEY_DOSE.f;
         }
       }
       tot.kcal += cMeal.kcal; tot.p += cMeal.p; tot.c += cMeal.c; tot.f += cMeal.f;
@@ -581,16 +733,17 @@
         const emptyData = {
           colazione: 'none',
           pranzoMode: 'classico',
+          pranzoPrimo: 'none',
           pranzoProt: 'none',
-          pranzoPasta: false,
-          pranzoOlio: false,
+          pranzoOlioGrams: 0,
           pranzoLeg: 'none',
           merenda: false,
           cenaMode: 'classico',
           cenaProt: 'none',
           cenaCarb: 'none',
-          cenaOlio: false,
+          cenaOlioGrams: 0,
           cenaLeg: 'none',
+          wheyMeal: 'none',
           aiMeals: []
         };
         applyData(emptyData);
