@@ -314,12 +314,12 @@
       </div>
     </div>
 
-    <!-- 6. NUOVA SEZIONE: AGGIUNGI ALIMENTO PERSONALIZZATO ALLE LISTE -->
+    <!-- 6. AGGIUNGI ALIMENTO PERSONALIZZATO ALLE LISTE (SENZA ELENCO SOTTO) -->
     <div class="bg-white dark:bg-gray-800 rounded-2xl p-4 shadow-sm border border-gray-200 dark:border-gray-700 transition-colors">
       <div class="flex items-center justify-between mb-2">
         <h2 class="font-bold text-lg flex items-center gap-2">📝 Aggiungi Alimento Personalizzato</h2>
       </div>
-      <p class="text-xs text-gray-500 dark:text-gray-400 mb-3">Inserisci un nuovo cibo con i tuoi valori nutrizionali per aggiungerlo permanentemente alla lista del pasto.</p>
+      <p class="text-xs text-gray-500 dark:text-gray-400 mb-3">Inserisci un nuovo cibo con i tuoi valori nutrizionali per aggiungerlo direttamente nel menù a tendina del pasto.</p>
 
       <div class="space-y-3">
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
@@ -373,9 +373,7 @@
         <button onclick="addCustomFood()" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-2 px-4 rounded-xl text-xs font-semibold transition shadow-sm">
           + Salva nella lista del pasto
         </button>
-
-        <!-- Lista cibi personalizzati salvati -->
-        <div id="custom-foods-list" class="space-y-1.5 pt-2"></div>
+        <div id="new-food-status" class="hidden text-xs text-center py-1 text-emerald-600 dark:text-emerald-400 font-medium"></div>
       </div>
     </div>
 
@@ -487,7 +485,7 @@
       cenaMode: 'classico',
       wheyMeal: 'none',
       aiMeals: [],
-      customFoods: [] // Lista alimenti personalizzati salvati dall'utente
+      customFoods: []
     };
 
     function initTheme() {
@@ -509,7 +507,6 @@
       switchCenaMode(state.cenaMode);
     }
 
-    // GESTIONE SELETTORI E ALIMENTI PERSONALIZZATI
     function handleNewFoodMealChange() {
       const meal = document.getElementById('new-food-meal').value;
       const subcatBox = document.getElementById('new-food-subcat-box');
@@ -554,39 +551,13 @@
       document.getElementById('new-food-c').value = '';
       document.getElementById('new-food-f').value = '';
 
+      const status = document.getElementById('new-food-status');
+      status.innerText = "Alimento aggiunto al menù del pasto!";
+      status.classList.remove('hidden');
+      setTimeout(() => status.classList.add('hidden'), 2500);
+
       renderAllSelects();
-      renderCustomFoodsList();
       triggerUpdate();
-    }
-
-    function removeCustomFood(id) {
-      state.customFoods = state.customFoods.filter(x => x.id !== id);
-      renderAllSelects();
-      renderCustomFoodsList();
-      triggerUpdate();
-    }
-
-    function renderCustomFoodsList() {
-      const listEl = document.getElementById('custom-foods-list');
-      listEl.innerHTML = '';
-
-      state.customFoods.forEach(food => {
-        let mealLabel = food.meal.toUpperCase();
-        if (food.subcat === 'carb') mealLabel += ' (PRIMO/CARBO)';
-        if (food.subcat === 'prot') mealLabel += ' (PROTEINA)';
-
-        const div = document.createElement('div');
-        div.className = 'flex items-center justify-between p-2.5 bg-gray-50 dark:bg-gray-700/60 rounded-xl border border-gray-200 dark:border-gray-600 text-xs';
-        div.innerHTML = `
-          <div>
-            <span class="text-[10px] font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400 block">${mealLabel}</span>
-            <span class="font-semibold text-gray-800 dark:text-gray-100">${food.name}</span>
-            <span class="text-gray-500 dark:text-gray-400 ml-1.5">${food.kcal} kcal • ${food.p}P ${food.c}C ${food.f}G</span>
-          </div>
-          <button onclick="removeCustomFood('${food.id}')" class="text-red-500 hover:text-red-700 font-bold px-2 py-0.5 rounded text-sm transition">✕</button>
-        `;
-        listEl.appendChild(div);
-      });
     }
 
     function renderAllSelects() {
@@ -957,7 +928,6 @@
       if (Array.isArray(d.customFoods)) {
         state.customFoods = d.customFoods;
       }
-      renderCustomFoodsList();
 
       state.wheyMeal = d.wheyMeal || 'none';
       renderAllSelects();
@@ -994,7 +964,7 @@
     function updateTotalsUI() {
       let tot = { kcal: 0, p: 0, c: 0, f: 0 };
 
-      // 1. Colazione (dinamica whey o personalizzata)
+      // 1. Colazione
       let bMeal = { kcal: 0, p: 0, c: 0, f: 0 };
       const cVal = document.getElementById('sel-colazione').value;
       const dataset = (state.wheyMeal === 'colazione') ? COLAZIONI_WHEY : COLAZIONI_STANDARD;
@@ -1190,7 +1160,7 @@
           cenaLegOlio: 10,
           wheyMeal: 'none',
           aiMeals: [],
-          customFoods: state.customFoods // Mantiene memorizzati i cibi personalizzati creati
+          customFoods: state.customFoods
         };
         applyData(emptyData);
         if (window.saveToCloud) window.saveToCloud(emptyData);
@@ -1199,7 +1169,6 @@
 
     initTheme();
     renderAllSelects();
-    renderCustomFoodsList();
     const saved = localStorage.getItem('myDietLog');
     if (saved) applyData(JSON.parse(saved));
   </script>
