@@ -173,29 +173,16 @@
       </div>
     </div>
 
-    <!-- 3. MERENDA -->
+    <!-- 3. MERENDA (SOLO SELEZIONE DA LISTA) -->
     <div class="bg-white dark:bg-gray-800 rounded-2xl p-4 shadow-sm border border-gray-200 dark:border-gray-700 transition-colors">
-      <div class="flex items-center justify-between mb-2">
+      <div class="flex items-center justify-between mb-3">
         <h2 class="font-bold text-lg flex items-center gap-2">🍌 Merenda</h2>
         <span class="text-xs bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 px-2.5 py-1 rounded-full font-medium" id="merenda-macro">0 kcal</span>
       </div>
-      
-      <div class="space-y-2">
-        <select id="sel-merenda" onchange="triggerUpdate()" class="w-full p-2.5 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-800 dark:text-gray-100 rounded-xl text-xs outline-none focus:ring-1 focus:ring-black dark:focus:ring-white">
-          <!-- Popolato dinamicamente -->
-        </select>
-
-        <div class="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-700/60 rounded-xl border border-gray-200 dark:border-gray-600">
-          <div class="text-xs">
-            <p class="font-bold text-gray-800 dark:text-gray-100" id="merenda-detail-title">50g Pane + 15g Miele + 1 Banana</p>
-            <p class="text-gray-500 dark:text-gray-400 mt-0.5" id="merenda-detail-macro">270 kcal • 5.5g P • 60g C • 2g G</p>
-          </div>
-          <label class="flex items-center gap-2 cursor-pointer">
-            <input type="checkbox" id="chk-merenda" onchange="triggerUpdate()" class="w-5 h-5 rounded text-black dark:text-white focus:ring-black">
-            <span class="text-xs font-bold text-gray-800 dark:text-gray-200">Mangiata</span>
-          </label>
-        </div>
-      </div>
+      <label class="block text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-1">Scegli la tua opzione</label>
+      <select id="sel-merenda" onchange="triggerUpdate()" class="w-full p-2.5 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-800 dark:text-gray-100 rounded-xl text-sm outline-none focus:ring-2 focus:ring-black dark:focus:ring-white">
+        <!-- Popolato dinamicamente -->
+      </select>
     </div>
 
     <!-- 4. CENA -->
@@ -301,20 +288,20 @@
       </div>
     </div>
 
-    <!-- 6. GESTIONE E MODIFICA ALIMENTI -->
+    <!-- 6. GESTIONE, MODIFICA ED ELIMINAZIONE ALIMENTI -->
     <div class="bg-white dark:bg-gray-800 rounded-2xl p-4 shadow-sm border border-gray-200 dark:border-gray-700 transition-colors">
       <div class="flex items-center justify-between mb-2">
         <h2 class="font-bold text-lg flex items-center gap-2">🛠️ Gestione & Modifica Alimenti</h2>
       </div>
-      <p class="text-xs text-gray-500 dark:text-gray-400 mb-3">Modifica i cibi già presenti nelle liste, creane di nuovi e assegnali a uno o più pasti contemporaneamente.</p>
+      <p class="text-xs text-gray-500 dark:text-gray-400 mb-3">Modifica i cibi esistenti, creane di nuovi, assegnali a più pasti contemporaneamente oppure eliminali dalle liste.</p>
 
       <div class="space-y-3">
-        <!-- Selettore per scegliere se creare o modificare -->
+        <!-- Selettore per scegliere se creare o modificare/eliminare -->
         <div>
           <label class="block text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-1">Seleziona cosa fare</label>
           <select id="food-editor-select" onchange="loadSelectedFoodToEditor()" class="w-full p-2.5 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-800 dark:text-gray-100 rounded-xl text-xs outline-none focus:ring-1 focus:ring-black dark:focus:ring-white font-medium">
             <option value="new">➕ Crea Nuovo Alimento</option>
-            <!-- Popolato con tutti i cibi per permetterne la modifica -->
+            <!-- Popolato con tutti i cibi per permetterne modifica ed eliminazione -->
           </select>
         </div>
 
@@ -385,13 +372,16 @@
           </div>
         </div>
 
-        <!-- Pulsanti Azione -->
+        <!-- Pulsanti Azione (Salva, Ripristina, Elimina) -->
         <div class="flex gap-2 pt-1">
           <button onclick="saveFoodFromEditor()" class="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white py-2 px-4 rounded-xl text-xs font-semibold transition shadow-sm">
             💾 Salva Alimento
           </button>
           <button id="btn-reset-food" onclick="resetFoodToDefault()" class="hidden bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-200 py-2 px-3 rounded-xl text-xs font-semibold transition" title="Ripristina valori originali">
-            🔄 Ripristina Default
+            🔄 Ripristina
+          </button>
+          <button id="btn-delete-food" onclick="deleteFoodFromEditor()" class="hidden bg-red-100 dark:bg-red-950/60 hover:bg-red-200 dark:hover:bg-red-900 text-red-600 dark:text-red-300 py-2 px-3 rounded-xl text-xs font-semibold transition" title="Elimina questo alimento da tutte le liste">
+            🗑️ Elimina Alimento
           </button>
         </div>
 
@@ -447,7 +437,6 @@
   </script>
 
   <script>
-    // CATALOGO BASE DEI CIBI CON DESTINAZIONI MULTIPLE
     const DEFAULT_FOODS = [
       // Proteine (Pranzo e Cena)
       { id: "macinato", name: "150g Macinato magro / Scottona", p: 31, c: 0, f: 7, kcal: 190, destinations: ["pranzo_prot", "cena_prot"] },
@@ -482,7 +471,7 @@
       { id: "patate", name: "250g Patate", p: 4.5, c: 43, f: 0.5, kcal: 200, destinations: ["cena_carb"] },
       { id: "riso", name: "65g Riso", p: 5, c: 51, f: 0.5, kcal: 230, destinations: ["cena_carb"] },
 
-      // Colazioni Standard (con varianti whey precalcolate)
+      // Colazioni
       { id: "col_1", name: "Salmone: 50g Pane + 50g Salmone + 1/4 Avocado + 200ml Latte parz. scremato", p: 21, c: 36, f: 19, kcal: 415, destinations: ["colazione"],
         wheyName: "Salmone (mod.): 50g Pane + 1/4 Avocado + 15g Noci", wheyP: 7.4, wheyC: 30, wheyF: 16.5, wheyKcal: 289 },
       { id: "col_2", name: "Philadelphia: 50g Pane + 30g Philadelphia + 1 Uovo + 100ml Albume", p: 24, c: 27, f: 14, kcal: 335, destinations: ["colazione"],
@@ -492,7 +481,7 @@
       { id: "col_4", name: "Avena: 200g Yogurt greco 0% + 45g Avena + 10g Miele + 10g Noci", p: 28, c: 47, f: 10, kcal: 380, destinations: ["colazione"],
         wheyName: "Avena (mod.): 150g Yogurt greco 0% + 40g Avena + 10g Noci", wheyP: 21.8, wheyC: 34.1, wheyF: 9.2, wheyKcal: 302 },
 
-      // Merenda
+      // Merenda Standard
       { id: "mer_standard", name: "Standard: 50g Pane + 15g Miele + 1 Banana", p: 5.5, c: 60, f: 2, kcal: 270, destinations: ["merenda"] }
     ];
 
@@ -503,7 +492,8 @@
       cenaMode: 'classico',
       wheyMeal: 'none',
       aiMeals: [],
-      customFoods: [] // Contiene sia cibi nuovi che modifiche a cibi di default
+      customFoods: [],
+      deletedFoodIds: [] // Elenco ID alimenti eliminati dall'utente
     };
 
     function initTheme() {
@@ -525,13 +515,15 @@
       switchCenaMode(state.cenaMode);
     }
 
-    // Restituisce tutti i cibi fondendo i default con le personalizzazioni e modifiche
+    // Unione cibi default + cibi personalizzati/modificati - cibi eliminati
     function getAllFoods() {
       const list = [];
       const customMap = new Map();
       state.customFoods.forEach(c => customMap.set(c.id, c));
+      const deleted = new Set(state.deletedFoodIds || []);
 
       DEFAULT_FOODS.forEach(def => {
+        if (deleted.has(def.id)) return;
         if (customMap.has(def.id)) {
           list.push(customMap.get(def.id));
           customMap.delete(def.id);
@@ -540,8 +532,9 @@
         }
       });
 
-      // Aggiunge eventuali cibi nuovi creati dall'utente
-      customMap.forEach(c => list.push(c));
+      customMap.forEach(c => {
+        if (!deleted.has(c.id)) list.push(c);
+      });
       return list;
     }
 
@@ -549,7 +542,7 @@
       return getAllFoods().filter(x => Array.isArray(x.destinations) && x.destinations.includes(dest));
     }
 
-    // EDITOR ALIMENTI
+    // GESTIONE EDITOR ALIMENTI
     function populateFoodEditorSelect() {
       const sel = document.getElementById('food-editor-select');
       const cur = sel.value;
@@ -560,10 +553,12 @@
       const groups = [
         { label: "🥣 Colazioni", dest: "colazione" },
         { label: "🍝 Primi Piatti", dest: "pranzo_primo" },
-        { label: "🥩 Proteine", dest: "pranzo_prot" },
-        { label: "🥗 Legumi", dest: "pranzo_leg" },
+        { label: "🥩 Proteine Pranzo", dest: "pranzo_prot" },
+        { label: "🥗 Legumi Pranzo", dest: "pranzo_leg" },
+        { label: "🍌 Merenda", dest: "merenda" },
         { label: "🍞 Carboidrati Cena", dest: "cena_carb" },
-        { label: "🍌 Merenda", dest: "merenda" }
+        { label: "🥩 Proteine Cena", dest: "cena_prot" },
+        { label: "🥗 Legumi Cena", dest: "cena_leg" }
       ];
 
       const seen = new Set();
@@ -580,7 +575,6 @@
         }
       });
 
-      // Eventuali altri cibi
       const remaining = all.filter(x => !seen.has(x.id));
       if (remaining.length > 0) {
         let optgroup = `<optgroup label="Altri cibi">`;
@@ -598,6 +592,7 @@
       const selVal = document.getElementById('food-editor-select').value;
       const all = getAllFoods();
       const resetBtn = document.getElementById('btn-reset-food');
+      const deleteBtn = document.getElementById('btn-delete-food');
 
       const destCheckboxes = [
         'colazione', 'pranzo_primo', 'pranzo_prot', 'pranzo_leg',
@@ -612,6 +607,7 @@
         document.getElementById('edit-food-f').value = '';
         destCheckboxes.forEach(d => document.getElementById(`dest-${d}`).checked = false);
         resetBtn.classList.add('hidden');
+        deleteBtn.classList.add('hidden');
       } else {
         const food = all.find(x => x.id === selVal);
         if (food) {
@@ -625,9 +621,9 @@
             document.getElementById(`dest-${d}`).checked = Array.isArray(food.destinations) && food.destinations.includes(d);
           });
 
-          // Mostra tasto ripristina solo se è un alimento di default che è stato modificato
           const isModifiedDefault = DEFAULT_FOODS.some(d => d.id === food.id) && state.customFoods.some(c => c.id === food.id);
           resetBtn.classList.toggle('hidden', !isModifiedDefault);
+          deleteBtn.classList.remove('hidden'); // Sempre visibile per poter eliminare l'alimento selezionato
         }
       }
     }
@@ -668,7 +664,6 @@
         destinations: selectedDests
       };
 
-      // Aggiorna o inserisce in state.customFoods
       const existingIdx = state.customFoods.findIndex(x => x.id === id);
       if (existingIdx >= 0) {
         state.customFoods[existingIdx] = foodItem;
@@ -701,10 +696,50 @@
       }
     }
 
+    // ELIMINAZIONE DI UN ALIMENTO DALLE LISTE
+    function deleteFoodFromEditor() {
+      const selVal = document.getElementById('food-editor-select').value;
+      if (selVal === 'new') return;
+
+      const all = getAllFoods();
+      const food = all.find(x => x.id === selVal);
+      const foodName = food ? food.name : 'questo alimento';
+
+      if (confirm(`Sei sicuro di voler eliminare "${foodName}" da tutte le liste dei pasti?`)) {
+        state.customFoods = state.customFoods.filter(x => x.id !== selVal);
+
+        if (!state.deletedFoodIds) state.deletedFoodIds = [];
+        if (DEFAULT_FOODS.some(d => d.id === selVal)) {
+          if (!state.deletedFoodIds.includes(selVal)) {
+            state.deletedFoodIds.push(selVal);
+          }
+        }
+
+        // Se l'alimento era attualmente selezionato nei pasti, resettalo a 'none'
+        if (document.getElementById('sel-colazione').value === selVal) document.getElementById('sel-colazione').value = 'none';
+        if (document.getElementById('sel-pranzo-primo').value === selVal) document.getElementById('sel-pranzo-primo').value = 'none';
+        if (document.getElementById('sel-pranzo-prot').value === selVal) document.getElementById('sel-pranzo-prot').value = 'none';
+        if (document.getElementById('sel-pranzo-legumi').value === selVal) document.getElementById('sel-pranzo-legumi').value = 'none';
+        if (document.getElementById('sel-merenda').value === selVal) document.getElementById('sel-merenda').value = 'none';
+        if (document.getElementById('sel-cena-prot').value === selVal) document.getElementById('sel-cena-prot').value = 'none';
+        if (document.getElementById('sel-cena-carb').value === selVal) document.getElementById('sel-cena-carb').value = 'none';
+        if (document.getElementById('sel-cena-legumi').value === selVal) document.getElementById('sel-cena-legumi').value = 'none';
+
+        const status = document.getElementById('food-editor-status');
+        status.innerText = `Alimento "${foodName}" eliminato con successo!`;
+        status.classList.remove('hidden');
+        setTimeout(() => status.classList.add('hidden'), 2500);
+
+        document.getElementById('food-editor-select').value = 'new';
+        loadSelectedFoodToEditor();
+        populateFoodEditorSelect();
+        renderAllSelects();
+        triggerUpdate();
+      }
+    }
+
     // POPOLAMENTO MENU DEI PASTI
     function renderAllSelects() {
-      const all = getAllFoods();
-
       // 1. Colazione
       const selCol = document.getElementById('sel-colazione');
       const curCol = selCol.value || 'none';
@@ -715,7 +750,7 @@
         if (isWhey && f.wheyName) label = f.wheyName;
         selCol.innerHTML += `<option value="${f.id}">${label} (${f.kcal} kcal)</option>`;
       });
-      selCol.value = curCol;
+      selCol.value = curCol && selCol.querySelector(`option[value="${curCol}"]`) ? curCol : 'none';
 
       // 2. Pranzo Primo
       const selP1 = document.getElementById('sel-pranzo-primo');
@@ -724,7 +759,7 @@
       getFoodsFor('pranzo_primo').forEach(f => {
         selP1.innerHTML += `<option value="${f.id}">${f.name} (${f.kcal} kcal)</option>`;
       });
-      selP1.value = curP1;
+      selP1.value = curP1 && selP1.querySelector(`option[value="${curP1}"]`) ? curP1 : 'none';
 
       // 3. Pranzo Proteine
       const selPProt = document.getElementById('sel-pranzo-prot');
@@ -733,7 +768,7 @@
       getFoodsFor('pranzo_prot').forEach(f => {
         selPProt.innerHTML += `<option value="${f.id}">${f.name}</option>`;
       });
-      selPProt.value = curPProt;
+      selPProt.value = curPProt && selPProt.querySelector(`option[value="${curPProt}"]`) ? curPProt : 'none';
 
       // 4. Pranzo Legumi
       const selPLeg = document.getElementById('sel-pranzo-legumi');
@@ -742,16 +777,16 @@
       getFoodsFor('pranzo_leg').forEach(f => {
         selPLeg.innerHTML += `<option value="${f.id}">${f.name} (${f.kcal} kcal)</option>`;
       });
-      selPLeg.value = curPLeg;
+      selPLeg.value = curPLeg && selPLeg.querySelector(`option[value="${curPLeg}"]`) ? curPLeg : 'none';
 
-      // 5. Merenda
+      // 5. Merenda (Solo lista)
       const selMer = document.getElementById('sel-merenda');
-      const curMer = selMer.value || 'mer_standard';
-      selMer.innerHTML = '';
+      const curMer = selMer.value || 'none';
+      selMer.innerHTML = `<option value="none">-- Seleziona Merenda --</option>`;
       getFoodsFor('merenda').forEach(f => {
         selMer.innerHTML += `<option value="${f.id}">${f.name} (${f.kcal} kcal)</option>`;
       });
-      selMer.value = curMer && selMer.querySelector(`option[value="${curMer}"]`) ? curMer : 'mer_standard';
+      selMer.value = curMer && selMer.querySelector(`option[value="${curMer}"]`) ? curMer : 'none';
 
       // 6. Cena Proteine
       const selCProt = document.getElementById('sel-cena-prot');
@@ -760,7 +795,7 @@
       getFoodsFor('cena_prot').forEach(f => {
         selCProt.innerHTML += `<option value="${f.id}">${f.name}</option>`;
       });
-      selCProt.value = curCProt;
+      selCProt.value = curCProt && selCProt.querySelector(`option[value="${curCProt}"]`) ? curCProt : 'none';
 
       // 7. Cena Carboidrati
       const selCCarb = document.getElementById('sel-cena-carb');
@@ -769,7 +804,7 @@
       getFoodsFor('cena_carb').forEach(f => {
         selCCarb.innerHTML += `<option value="${f.id}">${f.name} (${f.kcal} kcal)</option>`;
       });
-      selCCarb.value = curCCarb;
+      selCCarb.value = curCCarb && selCCarb.querySelector(`option[value="${curCCarb}"]`) ? curCCarb : 'none';
 
       // 8. Cena Legumi
       const selCLeg = document.getElementById('sel-cena-legumi');
@@ -778,7 +813,7 @@
       getFoodsFor('cena_leg').forEach(f => {
         selCLeg.innerHTML += `<option value="${f.id}">${f.name} (${f.kcal} kcal)</option>`;
       });
-      selCLeg.value = curCLeg;
+      selCLeg.value = curCLeg && selCLeg.querySelector(`option[value="${curCLeg}"]`) ? curCLeg : 'none';
     }
 
     function handleWheyToggle(meal) {
@@ -1022,7 +1057,6 @@
         pranzoLegPane: parseFloat(document.getElementById('input-pranzo-leg-pane').value) || 0,
         pranzoLegOlio: parseFloat(document.getElementById('input-pranzo-leg-olio').value) || 0,
         merendaFood: document.getElementById('sel-merenda').value,
-        merenda: document.getElementById('chk-merenda').checked,
         cenaMode: state.cenaMode,
         cenaProt: document.getElementById('sel-cena-prot').value,
         cenaCarb: document.getElementById('sel-cena-carb').value,
@@ -1032,7 +1066,8 @@
         cenaLegOlio: parseFloat(document.getElementById('input-cena-leg-olio').value) || 0,
         wheyMeal: state.wheyMeal,
         aiMeals: state.aiMeals,
-        customFoods: state.customFoods
+        customFoods: state.customFoods,
+        deletedFoodIds: state.deletedFoodIds || []
       };
 
       if (window.saveToCloud) {
@@ -1042,9 +1077,8 @@
 
     function applyData(d) {
       if (!d) return;
-      if (Array.isArray(d.customFoods)) {
-        state.customFoods = d.customFoods;
-      }
+      if (Array.isArray(d.customFoods)) state.customFoods = d.customFoods;
+      if (Array.isArray(d.deletedFoodIds)) state.deletedFoodIds = d.deletedFoodIds;
 
       state.wheyMeal = d.wheyMeal || 'none';
       renderAllSelects();
@@ -1061,7 +1095,6 @@
       document.getElementById('input-pranzo-leg-olio').value = d.pranzoLegOlio !== undefined ? d.pranzoLegOlio : 10;
 
       if (d.merendaFood) document.getElementById('sel-merenda').value = d.merendaFood;
-      document.getElementById('chk-merenda').checked = !!d.merenda;
 
       if (d.cenaMode && d.cenaMode !== state.cenaMode) switchCenaMode(d.cenaMode);
       document.getElementById('sel-cena-prot').value = d.cenaProt || 'none';
@@ -1150,24 +1183,17 @@
       tot.kcal += pMeal.kcal; tot.p += pMeal.p; tot.c += pMeal.c; tot.f += pMeal.f;
       document.getElementById('pranzo-macro').innerText = `${Math.round(pMeal.kcal)} kcal • ${Math.round(pMeal.p)}P ${Math.round(pMeal.c)}C ${Math.round(pMeal.f)}G`;
 
-      // 3. Merenda
+      // 3. Merenda (Calcolata direttamente dalla selezione del menù)
       let mMeal = { kcal: 0, p: 0, c: 0, f: 0 };
       const merVal = document.getElementById('sel-merenda').value;
-      if (merVal) {
+      if (merVal && merVal !== 'none') {
         const mer = allFoods.find(x => x.id === merVal);
         if (mer) {
           mMeal = { kcal: mer.kcal, p: mer.p, c: mer.c, f: mer.f };
-          document.getElementById('merenda-detail-title').innerText = mer.name;
-          document.getElementById('merenda-detail-macro').innerText = `${mer.kcal} kcal • ${mer.p}P • ${mer.c}C • ${mer.f}G`;
         }
       }
-
-      if (document.getElementById('chk-merenda').checked) {
-        tot.kcal += mMeal.kcal; tot.p += mMeal.p; tot.c += mMeal.c; tot.f += mMeal.f;
-        document.getElementById('merenda-macro').innerText = `${Math.round(mMeal.kcal)} kcal • ${Math.round(mMeal.p)}P ${Math.round(mMeal.c)}C ${Math.round(mMeal.f)}G`;
-      } else {
-        document.getElementById('merenda-macro').innerText = `0 kcal`;
-      }
+      tot.kcal += mMeal.kcal; tot.p += mMeal.p; tot.c += mMeal.c; tot.f += mMeal.f;
+      document.getElementById('merenda-macro').innerText = `${Math.round(mMeal.kcal)} kcal • ${Math.round(mMeal.p)}P ${Math.round(mMeal.c)}C ${Math.round(mMeal.f)}G`;
 
       // 4. Cena
       let cMeal = { kcal: 0, p: 0, c: 0, f: 0 };
@@ -1245,8 +1271,7 @@
           pranzoLeg: 'none',
           pranzoLegPane: 30,
           pranzoLegOlio: 10,
-          merendaFood: 'mer_standard',
-          merenda: false,
+          merendaFood: 'none',
           cenaMode: 'classico',
           cenaProt: 'none',
           cenaCarb: 'none',
@@ -1256,7 +1281,8 @@
           cenaLegOlio: 10,
           wheyMeal: 'none',
           aiMeals: [],
-          customFoods: state.customFoods
+          customFoods: state.customFoods,
+          deletedFoodIds: state.deletedFoodIds || []
         };
         applyData(emptyData);
         if (window.saveToCloud) window.saveToCloud(emptyData);
