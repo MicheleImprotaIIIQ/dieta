@@ -104,14 +104,12 @@
 
       <!-- Pranzo: Modalità Classico -->
       <div id="pranzo-mode-classico" class="space-y-3">
-        <!-- Primo Piatto & Olio EVO affiancati sulla stessa riga (grid-cols-2) -->
+        <!-- Primo Piatto & Olio EVO affiancati (grid-cols-2) -->
         <div class="grid grid-cols-2 gap-2 pb-1">
           <div>
             <label class="block text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-1">Primo piatto</label>
             <select id="sel-pranzo-primo" onchange="triggerUpdate()" class="w-full p-2 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-800 dark:text-gray-100 rounded-xl text-xs h-[42px] outline-none focus:ring-1 focus:ring-black dark:focus:ring-white">
-              <option value="none">-- Nessun primo --</option>
-              <option value="pasta120">🍝 120g Pasta (426 kcal)</option>
-              <option value="pappardelle130">🍝 130g Tagliatelle (485 kcal)</option>
+              <!-- Popolato dinamicamente -->
             </select>
           </div>
 
@@ -130,7 +128,7 @@
         <div>
           <label class="block text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-1">Fonte Proteica</label>
           <select id="sel-pranzo-prot" onchange="handlePranzoProtSelect()" class="w-full p-2.5 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-800 dark:text-gray-100 rounded-xl text-sm outline-none focus:ring-2 focus:ring-black dark:focus:ring-white">
-            <option value="none">-- Seleziona proteina --</option>
+            <!-- Popolato dinamicamente -->
           </select>
         </div>
 
@@ -146,11 +144,7 @@
         <div>
           <label class="block text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-1">Fonte di Legumi</label>
           <select id="sel-pranzo-legumi" onchange="triggerUpdate()" class="w-full p-2.5 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-800 dark:text-gray-100 rounded-xl text-sm outline-none focus:ring-2 focus:ring-black dark:focus:ring-white">
-            <option value="none">-- Seleziona legume --</option>
-            <option value="ceci_barattolo">350g Ceci barattolo sgocc. (420 kcal)</option>
-            <option value="lenticchie_barattolo">350g Lenticchie barattolo sgocc. (390 kcal)</option>
-            <option value="ceci_secchi">110g Ceci secchi (410 kcal)</option>
-            <option value="lenticchie_secche">110g Lenticchie secche (390 kcal)</option>
+            <!-- Popolato dinamicamente -->
           </select>
         </div>
 
@@ -188,7 +182,7 @@
       
       <div class="space-y-2">
         <select id="sel-merenda" onchange="triggerUpdate()" class="w-full p-2.5 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-800 dark:text-gray-100 rounded-xl text-xs outline-none focus:ring-1 focus:ring-black dark:focus:ring-white">
-          <option value="standard">Standard: 50g Pane + 15g Miele + 1 Banana (270 kcal)</option>
+          <!-- Popolato dinamicamente -->
         </select>
 
         <div class="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-700/60 rounded-xl border border-gray-200 dark:border-gray-600">
@@ -221,19 +215,16 @@
         <div>
           <label class="block text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-1">Fonte Proteica</label>
           <select id="sel-cena-prot" onchange="triggerUpdate()" class="w-full p-2.5 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-800 dark:text-gray-100 rounded-xl text-sm outline-none focus:ring-2 focus:ring-black dark:focus:ring-white">
-            <option value="none">-- Seleziona proteina --</option>
+            <!-- Popolato dinamicamente -->
           </select>
         </div>
 
-        <!-- Carboidrati & Olio EVO affiancati sulla stessa riga (grid-cols-2) -->
+        <!-- Carboidrati & Olio EVO affiancati (grid-cols-2) -->
         <div class="grid grid-cols-2 gap-2">
           <div>
             <label class="block text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-1">Carboidrati</label>
             <select id="sel-cena-carb" onchange="triggerUpdate()" class="w-full p-2 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-800 dark:text-gray-100 rounded-xl text-xs h-[42px] outline-none focus:ring-1 focus:ring-black dark:focus:ring-white">
-              <option value="none">-- Seleziona --</option>
-              <option value="pane">100g Pane (270 kcal)</option>
-              <option value="patate">250g Patate (200 kcal)</option>
-              <option value="riso">65g Riso (230 kcal)</option>
+              <!-- Popolato dinamicamente -->
             </select>
           </div>
 
@@ -261,11 +252,7 @@
         <div>
           <label class="block text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-1">Fonte di Legumi</label>
           <select id="sel-cena-legumi" onchange="triggerUpdate()" class="w-full p-2.5 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-800 dark:text-gray-100 rounded-xl text-sm outline-none focus:ring-2 focus:ring-black dark:focus:ring-white">
-            <option value="none">-- Seleziona legume --</option>
-            <option value="ceci_barattolo">350g Ceci barattolo sgocc. (420 kcal)</option>
-            <option value="lenticchie_barattolo">350g Lenticchie barattolo sgocc. (390 kcal)</option>
-            <option value="ceci_secchi">110g Ceci secchi (410 kcal)</option>
-            <option value="lenticchie_secche">110g Lenticchie secche (390 kcal)</option>
+            <!-- Popolato dinamicamente -->
           </select>
         </div>
 
@@ -314,37 +301,26 @@
       </div>
     </div>
 
-    <!-- 6. AGGIUNGI ALIMENTO PERSONALIZZATO ALLE LISTE (SENZA ELENCO SOTTO) -->
+    <!-- 6. GESTIONE E MODIFICA ALIMENTI -->
     <div class="bg-white dark:bg-gray-800 rounded-2xl p-4 shadow-sm border border-gray-200 dark:border-gray-700 transition-colors">
       <div class="flex items-center justify-between mb-2">
-        <h2 class="font-bold text-lg flex items-center gap-2">📝 Aggiungi Alimento Personalizzato</h2>
+        <h2 class="font-bold text-lg flex items-center gap-2">🛠️ Gestione & Modifica Alimenti</h2>
       </div>
-      <p class="text-xs text-gray-500 dark:text-gray-400 mb-3">Inserisci un nuovo cibo con i tuoi valori nutrizionali per aggiungerlo direttamente nel menù a tendina del pasto.</p>
+      <p class="text-xs text-gray-500 dark:text-gray-400 mb-3">Modifica i cibi già presenti nelle liste, creane di nuovi e assegnali a uno o più pasti contemporaneamente.</p>
 
       <div class="space-y-3">
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
-          <div>
-            <label class="block text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-1">Seleziona il pasto</label>
-            <select id="new-food-meal" onchange="handleNewFoodMealChange()" class="w-full p-2.5 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-800 dark:text-gray-100 rounded-xl text-xs outline-none focus:ring-1 focus:ring-black dark:focus:ring-white">
-              <option value="colazione">Colazione</option>
-              <option value="pranzo">Pranzo</option>
-              <option value="merenda">Merenda</option>
-              <option value="cena">Cena</option>
-            </select>
-          </div>
-
-          <div id="new-food-subcat-box" class="hidden">
-            <label class="block text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-1">Categoria</label>
-            <select id="new-food-subcat" class="w-full p-2.5 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-800 dark:text-gray-100 rounded-xl text-xs outline-none focus:ring-1 focus:ring-black dark:focus:ring-white">
-              <option value="carb">Primo / Carboidrato</option>
-              <option value="prot">Fonte Proteica</option>
-            </select>
-          </div>
+        <!-- Selettore per scegliere se creare o modificare -->
+        <div>
+          <label class="block text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-1">Seleziona cosa fare</label>
+          <select id="food-editor-select" onchange="loadSelectedFoodToEditor()" class="w-full p-2.5 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-800 dark:text-gray-100 rounded-xl text-xs outline-none focus:ring-1 focus:ring-black dark:focus:ring-white font-medium">
+            <option value="new">➕ Crea Nuovo Alimento</option>
+            <!-- Popolato con tutti i cibi per permetterne la modifica -->
+          </select>
         </div>
 
         <div>
           <label class="block text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-1">Nome del cibo / Porzione</label>
-          <input type="text" id="new-food-name" placeholder="Es: 80g Riso Venere, 150g Salmone affumicato, 3 fette biscottate..." class="w-full p-2.5 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-800 dark:text-gray-100 rounded-xl text-xs outline-none focus:ring-1 focus:ring-black dark:focus:ring-white">
+          <input type="text" id="edit-food-name" placeholder="Es: 160g Petto di pollo, 300g Fagioli borlotti..." class="w-full p-2.5 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-800 dark:text-gray-100 rounded-xl text-xs outline-none focus:ring-1 focus:ring-black dark:focus:ring-white font-medium">
         </div>
 
         <!-- Valori Nutrizionali -->
@@ -352,28 +328,74 @@
           <label class="block text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-1">Valori nutrizionali totali della porzione</label>
           <div class="grid grid-cols-4 gap-2">
             <div>
-              <input type="number" id="new-food-kcal" placeholder="Kcal" class="w-full p-2 text-center bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-800 dark:text-gray-100 rounded-xl text-xs font-bold outline-none">
+              <input type="number" id="edit-food-kcal" placeholder="Kcal" class="w-full p-2 text-center bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-800 dark:text-gray-100 rounded-xl text-xs font-bold outline-none">
               <span class="block text-[10px] text-center text-gray-400 mt-0.5">Calorie</span>
             </div>
             <div>
-              <input type="number" step="0.1" id="new-food-p" placeholder="P (g)" class="w-full p-2 text-center bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-800 dark:text-gray-100 rounded-xl text-xs font-bold outline-none">
+              <input type="number" step="0.1" id="edit-food-p" placeholder="P (g)" class="w-full p-2 text-center bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-800 dark:text-gray-100 rounded-xl text-xs font-bold outline-none">
               <span class="block text-[10px] text-center text-blue-500 mt-0.5">Proteine</span>
             </div>
             <div>
-              <input type="number" step="0.1" id="new-food-c" placeholder="C (g)" class="w-full p-2 text-center bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-800 dark:text-gray-100 rounded-xl text-xs font-bold outline-none">
+              <input type="number" step="0.1" id="edit-food-c" placeholder="C (g)" class="w-full p-2 text-center bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-800 dark:text-gray-100 rounded-xl text-xs font-bold outline-none">
               <span class="block text-[10px] text-center text-amber-500 mt-0.5">Carbo</span>
             </div>
             <div>
-              <input type="number" step="0.1" id="new-food-f" placeholder="G (g)" class="w-full p-2 text-center bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-800 dark:text-gray-100 rounded-xl text-xs font-bold outline-none">
+              <input type="number" step="0.1" id="edit-food-f" placeholder="G (g)" class="w-full p-2 text-center bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-800 dark:text-gray-100 rounded-xl text-xs font-bold outline-none">
               <span class="block text-[10px] text-center text-emerald-500 mt-0.5">Grassi</span>
             </div>
           </div>
         </div>
 
-        <button onclick="addCustomFood()" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-2 px-4 rounded-xl text-xs font-semibold transition shadow-sm">
-          + Salva nella lista del pasto
-        </button>
-        <div id="new-food-status" class="hidden text-xs text-center py-1 text-emerald-600 dark:text-emerald-400 font-medium"></div>
+        <!-- In quali pasti farlo comparire (Spunta multipla) -->
+        <div>
+          <label class="block text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-1.5">In quali liste farlo comparire? (spunta uno o più)</label>
+          <div class="grid grid-cols-2 gap-2 text-xs">
+            <label class="flex items-center gap-2 p-2 bg-gray-50 dark:bg-gray-700/50 border border-gray-200 dark:border-gray-600 rounded-xl cursor-pointer">
+              <input type="checkbox" id="dest-colazione" class="w-4 h-4 rounded text-indigo-600">
+              <span class="text-gray-700 dark:text-gray-200">🥣 Colazione</span>
+            </label>
+            <label class="flex items-center gap-2 p-2 bg-gray-50 dark:bg-gray-700/50 border border-gray-200 dark:border-gray-600 rounded-xl cursor-pointer">
+              <input type="checkbox" id="dest-pranzo_primo" class="w-4 h-4 rounded text-indigo-600">
+              <span class="text-gray-700 dark:text-gray-200">🍝 Pranzo (Primo)</span>
+            </label>
+            <label class="flex items-center gap-2 p-2 bg-gray-50 dark:bg-gray-700/50 border border-gray-200 dark:border-gray-600 rounded-xl cursor-pointer">
+              <input type="checkbox" id="dest-pranzo_prot" class="w-4 h-4 rounded text-indigo-600">
+              <span class="text-gray-700 dark:text-gray-200">🥩 Pranzo (Proteina)</span>
+            </label>
+            <label class="flex items-center gap-2 p-2 bg-gray-50 dark:bg-gray-700/50 border border-gray-200 dark:border-gray-600 rounded-xl cursor-pointer">
+              <input type="checkbox" id="dest-pranzo_leg" class="w-4 h-4 rounded text-indigo-600">
+              <span class="text-gray-700 dark:text-gray-200">🥗 Pranzo (Legumi)</span>
+            </label>
+            <label class="flex items-center gap-2 p-2 bg-gray-50 dark:bg-gray-700/50 border border-gray-200 dark:border-gray-600 rounded-xl cursor-pointer">
+              <input type="checkbox" id="dest-merenda" class="w-4 h-4 rounded text-indigo-600">
+              <span class="text-gray-700 dark:text-gray-200">🍌 Merenda</span>
+            </label>
+            <label class="flex items-center gap-2 p-2 bg-gray-50 dark:bg-gray-700/50 border border-gray-200 dark:border-gray-600 rounded-xl cursor-pointer">
+              <input type="checkbox" id="dest-cena_carb" class="w-4 h-4 rounded text-indigo-600">
+              <span class="text-gray-700 dark:text-gray-200">🍞 Cena (Carboidrato)</span>
+            </label>
+            <label class="flex items-center gap-2 p-2 bg-gray-50 dark:bg-gray-700/50 border border-gray-200 dark:border-gray-600 rounded-xl cursor-pointer">
+              <input type="checkbox" id="dest-cena_prot" class="w-4 h-4 rounded text-indigo-600">
+              <span class="text-gray-700 dark:text-gray-200">🥩 Cena (Proteina)</span>
+            </label>
+            <label class="flex items-center gap-2 p-2 bg-gray-50 dark:bg-gray-700/50 border border-gray-200 dark:border-gray-600 rounded-xl cursor-pointer">
+              <input type="checkbox" id="dest-cena_leg" class="w-4 h-4 rounded text-indigo-600">
+              <span class="text-gray-700 dark:text-gray-200">🥗 Cena (Legumi)</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Pulsanti Azione -->
+        <div class="flex gap-2 pt-1">
+          <button onclick="saveFoodFromEditor()" class="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white py-2 px-4 rounded-xl text-xs font-semibold transition shadow-sm">
+            💾 Salva Alimento
+          </button>
+          <button id="btn-reset-food" onclick="resetFoodToDefault()" class="hidden bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-200 py-2 px-3 rounded-xl text-xs font-semibold transition" title="Ripristina valori originali">
+            🔄 Ripristina Default
+          </button>
+        </div>
+
+        <div id="food-editor-status" class="hidden text-xs text-center py-1 text-emerald-600 dark:text-emerald-400 font-medium"></div>
       </div>
     </div>
 
@@ -425,58 +447,54 @@
   </script>
 
   <script>
-    const PROTEINE = [
-      { id: "macinato", name: "150g Macinato magro / Scottona", p: 31, c: 0, f: 7, kcal: 190 },
-      { id: "pollo", name: "140g Petto di pollo", p: 32, c: 0, f: 1.5, kcal: 145 },
-      { id: "tacchino", name: "140g Petto di tacchino", p: 32, c: 0, f: 1.5, kcal: 145 },
-      { id: "bresaola", name: "110g Bresaola / Fesa di tacchino", p: 34, c: 1, f: 2, kcal: 160 },
-      { id: "arista", name: "140g Arista di maiale magra", p: 31, c: 0, f: 4, kcal: 160 },
-      { id: "tonno", name: "130g Tonno al naturale sgocc.", p: 32, c: 0, f: 1, kcal: 140 },
-      { id: "pesce_bianco", name: "180g Merluzzo / Nasello / Platessa", p: 31, c: 0, f: 1, kcal: 140 },
-      { id: "persico", name: "160g Filetto di persico", p: 30, c: 0, f: 2, kcal: 140 },
-      { id: "salmone", name: "150g Salmone fresco", p: 30, c: 0, f: 18, kcal: 285 },
-      { id: "sgombro", name: "140g Sgombro al naturale sgocc.", p: 29, c: 0, f: 10, kcal: 210 },
-      { id: "gamberi", name: "160g Gamberi / Mazzancolle sgusc.", p: 32, c: 1, f: 1, kcal: 140 },
-      { id: "molluschi", name: "180g Anelli di totano / seppia", p: 30, c: 2, f: 2, kcal: 145 },
-      { id: "scatola_pollo", name: "150g Pollo in scatola naturale sgocc.", p: 31, c: 0, f: 1.5, kcal: 140 },
-      { id: "uova", name: "2 Uova intere + 150g Albume", p: 28, c: 1.5, f: 10, kcal: 210 },
-      { id: "fiocchi", name: "250g Fiocchi di latte magri", p: 28, c: 6, f: 4, kcal: 175 },
-      { id: "ricotta", name: "200g Ricotta vaccina", p: 18, c: 7, f: 18, kcal: 260 }
+    // CATALOGO BASE DEI CIBI CON DESTINAZIONI MULTIPLE
+    const DEFAULT_FOODS = [
+      // Proteine (Pranzo e Cena)
+      { id: "macinato", name: "150g Macinato magro / Scottona", p: 31, c: 0, f: 7, kcal: 190, destinations: ["pranzo_prot", "cena_prot"] },
+      { id: "pollo", name: "140g Petto di pollo", p: 32, c: 0, f: 1.5, kcal: 145, destinations: ["pranzo_prot", "cena_prot"] },
+      { id: "tacchino", name: "140g Petto di tacchino", p: 32, c: 0, f: 1.5, kcal: 145, destinations: ["pranzo_prot", "cena_prot"] },
+      { id: "bresaola", name: "110g Bresaola / Fesa di tacchino", p: 34, c: 1, f: 2, kcal: 160, destinations: ["pranzo_prot", "cena_prot"] },
+      { id: "arista", name: "140g Arista di maiale magra", p: 31, c: 0, f: 4, kcal: 160, destinations: ["pranzo_prot", "cena_prot"] },
+      { id: "tonno", name: "130g Tonno al naturale sgocc.", p: 32, c: 0, f: 1, kcal: 140, destinations: ["pranzo_prot", "cena_prot"] },
+      { id: "pesce_bianco", name: "180g Merluzzo / Nasello / Platessa", p: 31, c: 0, f: 1, kcal: 140, destinations: ["pranzo_prot", "cena_prot"] },
+      { id: "persico", name: "160g Filetto di persico", p: 30, c: 0, f: 2, kcal: 140, destinations: ["pranzo_prot", "cena_prot"] },
+      { id: "salmone", name: "150g Salmone fresco", p: 30, c: 0, f: 18, kcal: 285, destinations: ["pranzo_prot", "cena_prot"] },
+      { id: "sgombro", name: "140g Sgombro al naturale sgocc.", p: 29, c: 0, f: 10, kcal: 210, destinations: ["pranzo_prot", "cena_prot"] },
+      { id: "gamberi", name: "160g Gamberi / Mazzancolle sgusc.", p: 32, c: 1, f: 1, kcal: 140, destinations: ["pranzo_prot", "cena_prot"] },
+      { id: "molluschi", name: "180g Anelli di totano / seppia", p: 30, c: 2, f: 2, kcal: 145, destinations: ["pranzo_prot", "cena_prot"] },
+      { id: "scatola_pollo", name: "150g Pollo in scatola naturale sgocc.", p: 31, c: 0, f: 1.5, kcal: 140, destinations: ["pranzo_prot", "cena_prot"] },
+      { id: "uova", name: "2 Uova intere + 150g Albume", p: 28, c: 1.5, f: 10, kcal: 210, destinations: ["pranzo_prot", "cena_prot"] },
+      { id: "fiocchi", name: "250g Fiocchi di latte magri", p: 28, c: 6, f: 4, kcal: 175, destinations: ["pranzo_prot", "cena_prot"] },
+      { id: "ricotta", name: "200g Ricotta vaccina", p: 18, c: 7, f: 18, kcal: 260, destinations: ["pranzo_prot", "cena_prot"] },
+
+      // Primi Piatti Pranzo
+      { id: "pasta120", name: "🍝 120g Pasta", p: 14.4, c: 87.6, f: 1.8, kcal: 426, destinations: ["pranzo_primo"] },
+      { id: "pappardelle130", name: "🍝 130g Tagliatelle", p: 17.0, c: 89.7, f: 5.2, kcal: 485, destinations: ["pranzo_primo"] },
+
+      // Legumi (Pranzo e Cena)
+      { id: "ceci_barattolo", name: "350g Ceci barattolo sgocc.", p: 24, c: 60, f: 8, kcal: 420, destinations: ["pranzo_leg", "cena_leg"] },
+      { id: "lenticchie_barattolo", name: "350g Lenticchie barattolo sgocc.", p: 26, c: 55, f: 6, kcal: 390, destinations: ["pranzo_leg", "cena_leg"] },
+      { id: "ceci_secchi", name: "110g Ceci secchi", p: 23, c: 63, f: 7, kcal: 410, destinations: ["pranzo_leg", "cena_leg"] },
+      { id: "lenticchie_secche", name: "110g Lenticchie secche", p: 27, c: 57, f: 3, kcal: 390, destinations: ["pranzo_leg", "cena_leg"] },
+
+      // Carboidrati Cena
+      { id: "pane", name: "100g Pane", p: 8.5, c: 51, f: 1.5, kcal: 270, destinations: ["cena_carb"] },
+      { id: "patate", name: "250g Patate", p: 4.5, c: 43, f: 0.5, kcal: 200, destinations: ["cena_carb"] },
+      { id: "riso", name: "65g Riso", p: 5, c: 51, f: 0.5, kcal: 230, destinations: ["cena_carb"] },
+
+      // Colazioni Standard (con varianti whey precalcolate)
+      { id: "col_1", name: "Salmone: 50g Pane + 50g Salmone + 1/4 Avocado + 200ml Latte parz. scremato", p: 21, c: 36, f: 19, kcal: 415, destinations: ["colazione"],
+        wheyName: "Salmone (mod.): 50g Pane + 1/4 Avocado + 15g Noci", wheyP: 7.4, wheyC: 30, wheyF: 16.5, wheyKcal: 289 },
+      { id: "col_2", name: "Philadelphia: 50g Pane + 30g Philadelphia + 1 Uovo + 100ml Albume", p: 24, c: 27, f: 14, kcal: 335, destinations: ["colazione"],
+        wheyName: "Philadelphia (mod.): 50g Pane + 40g Philadelphia + 15g Noci", wheyP: 9.1, wheyC: 28.6, wheyF: 20.6, wheyKcal: 333 },
+      { id: "col_3", name: "Uovo: 50g Pane + 1 Uovo + 100ml Albume + 1/4 Avocado", p: 23, c: 29, f: 12, kcal: 315, destinations: ["colazione"],
+        wheyName: "Uovo (mod.): 50g Pane + 60g Avocado", wheyP: 5.7, wheyC: 30.2, wheyF: 10.5, wheyKcal: 231 },
+      { id: "col_4", name: "Avena: 200g Yogurt greco 0% + 45g Avena + 10g Miele + 10g Noci", p: 28, c: 47, f: 10, kcal: 380, destinations: ["colazione"],
+        wheyName: "Avena (mod.): 150g Yogurt greco 0% + 40g Avena + 10g Noci", wheyP: 21.8, wheyC: 34.1, wheyF: 9.2, wheyKcal: 302 },
+
+      // Merenda
+      { id: "mer_standard", name: "Standard: 50g Pane + 15g Miele + 1 Banana", p: 5.5, c: 60, f: 2, kcal: 270, destinations: ["merenda"] }
     ];
-
-    const LEGUMI_BASE = {
-      "ceci_barattolo": { p: 24, c: 60, f: 8, kcal: 420 },
-      "lenticchie_barattolo": { p: 26, c: 55, f: 6, kcal: 390 },
-      "ceci_secchi": { p: 23, c: 63, f: 7, kcal: 410 },
-      "lenticchie_secche": { p: 27, c: 57, f: 3, kcal: 390 }
-    };
-
-    const COLAZIONI_STANDARD = {
-      "1": { text: "Salmone: 50g Pane + 50g Salmone + 1/4 Avocado + 200ml Latte parz. scremato", p: 21, c: 36, f: 19, kcal: 415 },
-      "2": { text: "Philadelphia: 50g Pane + 30g Philadelphia + 1 Uovo + 100ml Albume", p: 24, c: 27, f: 14, kcal: 335 },
-      "3": { text: "Uovo: 50g Pane + 1 Uovo + 100ml Albume + 1/4 Avocado", p: 23, c: 29, f: 12, kcal: 315 },
-      "4": { text: "Avena: 200g Yogurt greco 0% + 45g Avena + 10g Miele + 10g Noci", p: 28, c: 47, f: 10, kcal: 380 }
-    };
-
-    const COLAZIONI_WHEY = {
-      "1": { text: "Salmone (mod.): 50g Pane + 1/4 Avocado + 15g Noci", p: 7.4, c: 30, f: 16.5, kcal: 289 },
-      "2": { text: "Philadelphia (mod.): 50g Pane + 40g Philadelphia + 15g Noci", p: 9.1, c: 28.6, f: 20.6, kcal: 333 },
-      "3": { text: "Uovo (mod.): 50g Pane + 60g Avocado", p: 5.7, c: 30.2, f: 10.5, kcal: 231 },
-      "4": { text: "Avena (mod.): 150g Yogurt greco 0% + 40g Avena + 10g Noci", p: 21.8, c: 34.1, f: 9.2, kcal: 302 }
-    };
-
-    const MERENDA_STANDARD = { text: "Standard: 50g Pane + 15g Miele + 1 Banana", p: 5.5, c: 60, f: 2, kcal: 270 };
-
-    const PRIMI_PRANZO = {
-      "pasta120": { name: "🍝 120g Pasta (426 kcal)", p: 14.4, c: 87.6, f: 1.8, kcal: 426 },
-      "pappardelle130": { name: "🍝 130g Tagliatelle (485 kcal)", p: 17.0, c: 89.7, f: 5.2, kcal: 485 }
-    };
-
-    const CARBO_CENA = {
-      "pane": { name: "100g Pane (270 kcal)", p: 8.5, c: 51, f: 1.5, kcal: 270 },
-      "patate": { name: "250g Patate (200 kcal)", p: 4.5, c: 43, f: 0.5, kcal: 200 },
-      "riso": { name: "65g Riso (230 kcal)", p: 5, c: 51, f: 0.5, kcal: 230 }
-    };
 
     const WHEY_DOSE = { p: 23.7, c: 1.8, f: 1.0, kcal: 111 };
 
@@ -485,7 +503,7 @@
       cenaMode: 'classico',
       wheyMeal: 'none',
       aiMeals: [],
-      customFoods: []
+      customFoods: [] // Contiene sia cibi nuovi che modifiche a cibi di default
     };
 
     function initTheme() {
@@ -507,161 +525,260 @@
       switchCenaMode(state.cenaMode);
     }
 
-    function handleNewFoodMealChange() {
-      const meal = document.getElementById('new-food-meal').value;
-      const subcatBox = document.getElementById('new-food-subcat-box');
-      if (meal === 'pranzo' || meal === 'cena') {
-        subcatBox.classList.remove('hidden');
+    // Restituisce tutti i cibi fondendo i default con le personalizzazioni e modifiche
+    function getAllFoods() {
+      const list = [];
+      const customMap = new Map();
+      state.customFoods.forEach(c => customMap.set(c.id, c));
+
+      DEFAULT_FOODS.forEach(def => {
+        if (customMap.has(def.id)) {
+          list.push(customMap.get(def.id));
+          customMap.delete(def.id);
+        } else {
+          list.push(def);
+        }
+      });
+
+      // Aggiunge eventuali cibi nuovi creati dall'utente
+      customMap.forEach(c => list.push(c));
+      return list;
+    }
+
+    function getFoodsFor(dest) {
+      return getAllFoods().filter(x => Array.isArray(x.destinations) && x.destinations.includes(dest));
+    }
+
+    // EDITOR ALIMENTI
+    function populateFoodEditorSelect() {
+      const sel = document.getElementById('food-editor-select');
+      const cur = sel.value;
+      const all = getAllFoods();
+
+      sel.innerHTML = `<option value="new">➕ Crea Nuovo Alimento</option>`;
+
+      const groups = [
+        { label: "🥣 Colazioni", dest: "colazione" },
+        { label: "🍝 Primi Piatti", dest: "pranzo_primo" },
+        { label: "🥩 Proteine", dest: "pranzo_prot" },
+        { label: "🥗 Legumi", dest: "pranzo_leg" },
+        { label: "🍞 Carboidrati Cena", dest: "cena_carb" },
+        { label: "🍌 Merenda", dest: "merenda" }
+      ];
+
+      const seen = new Set();
+      groups.forEach(g => {
+        const items = getFoodsFor(g.dest);
+        if (items.length > 0) {
+          let optgroup = `<optgroup label="${g.label}">`;
+          items.forEach(it => {
+            optgroup += `<option value="${it.id}">${it.name}</option>`;
+            seen.add(it.id);
+          });
+          optgroup += `</optgroup>`;
+          sel.innerHTML += optgroup;
+        }
+      });
+
+      // Eventuali altri cibi
+      const remaining = all.filter(x => !seen.has(x.id));
+      if (remaining.length > 0) {
+        let optgroup = `<optgroup label="Altri cibi">`;
+        remaining.forEach(it => {
+          optgroup += `<option value="${it.id}">${it.name}</option>`;
+        });
+        optgroup += `</optgroup>`;
+        sel.innerHTML += optgroup;
+      }
+
+      sel.value = cur && sel.querySelector(`option[value="${cur}"]`) ? cur : 'new';
+    }
+
+    function loadSelectedFoodToEditor() {
+      const selVal = document.getElementById('food-editor-select').value;
+      const all = getAllFoods();
+      const resetBtn = document.getElementById('btn-reset-food');
+
+      const destCheckboxes = [
+        'colazione', 'pranzo_primo', 'pranzo_prot', 'pranzo_leg',
+        'merenda', 'cena_carb', 'cena_prot', 'cena_leg'
+      ];
+
+      if (selVal === 'new') {
+        document.getElementById('edit-food-name').value = '';
+        document.getElementById('edit-food-kcal').value = '';
+        document.getElementById('edit-food-p').value = '';
+        document.getElementById('edit-food-c').value = '';
+        document.getElementById('edit-food-f').value = '';
+        destCheckboxes.forEach(d => document.getElementById(`dest-${d}`).checked = false);
+        resetBtn.classList.add('hidden');
       } else {
-        subcatBox.classList.add('hidden');
+        const food = all.find(x => x.id === selVal);
+        if (food) {
+          document.getElementById('edit-food-name').value = food.name;
+          document.getElementById('edit-food-kcal').value = food.kcal;
+          document.getElementById('edit-food-p').value = food.p;
+          document.getElementById('edit-food-c').value = food.c;
+          document.getElementById('edit-food-f').value = food.f;
+
+          destCheckboxes.forEach(d => {
+            document.getElementById(`dest-${d}`).checked = Array.isArray(food.destinations) && food.destinations.includes(d);
+          });
+
+          // Mostra tasto ripristina solo se è un alimento di default che è stato modificato
+          const isModifiedDefault = DEFAULT_FOODS.some(d => d.id === food.id) && state.customFoods.some(c => c.id === food.id);
+          resetBtn.classList.toggle('hidden', !isModifiedDefault);
+        }
       }
     }
 
-    function addCustomFood() {
-      const meal = document.getElementById('new-food-meal').value;
-      const subcat = document.getElementById('new-food-subcat').value;
-      const name = document.getElementById('new-food-name').value.trim();
-      const kcal = parseFloat(document.getElementById('new-food-kcal').value);
-      const p = parseFloat(document.getElementById('new-food-p').value) || 0;
-      const c = parseFloat(document.getElementById('new-food-c').value) || 0;
-      const f = parseFloat(document.getElementById('new-food-f').value) || 0;
+    function saveFoodFromEditor() {
+      const selVal = document.getElementById('food-editor-select').value;
+      const name = document.getElementById('edit-food-name').value.trim();
+      const kcal = parseFloat(document.getElementById('edit-food-kcal').value);
+      const p = parseFloat(document.getElementById('edit-food-p').value) || 0;
+      const c = parseFloat(document.getElementById('edit-food-c').value) || 0;
+      const f = parseFloat(document.getElementById('edit-food-f').value) || 0;
+
+      const destCheckboxes = [
+        'colazione', 'pranzo_primo', 'pranzo_prot', 'pranzo_leg',
+        'merenda', 'cena_carb', 'cena_prot', 'cena_leg'
+      ];
+      const selectedDests = destCheckboxes.filter(d => document.getElementById(`dest-${d}`).checked);
 
       if (!name || isNaN(kcal)) {
-        alert('Inserisci almeno il nome del cibo e le calorie!');
+        alert('Inserisci almeno il nome e le calorie dell\'alimento!');
         return;
       }
 
-      const item = {
-        id: 'cust_' + Date.now(),
-        meal: meal,
-        subcat: (meal === 'pranzo' || meal === 'cena') ? subcat : 'none',
+      if (selectedDests.length === 0) {
+        alert('Spunta almeno un pasto/lista in cui far comparire l\'alimento!');
+        return;
+      }
+
+      const id = (selVal === 'new') ? ('cust_' + Date.now()) : selVal;
+
+      const foodItem = {
+        id: id,
         name: name,
         kcal: Math.round(kcal),
         p: Math.round(p * 10) / 10,
         c: Math.round(c * 10) / 10,
-        f: Math.round(f * 10) / 10
+        f: Math.round(f * 10) / 10,
+        destinations: selectedDests
       };
 
-      state.customFoods.push(item);
+      // Aggiorna o inserisce in state.customFoods
+      const existingIdx = state.customFoods.findIndex(x => x.id === id);
+      if (existingIdx >= 0) {
+        state.customFoods[existingIdx] = foodItem;
+      } else {
+        state.customFoods.push(foodItem);
+      }
 
-      // Pulisce campi form
-      document.getElementById('new-food-name').value = '';
-      document.getElementById('new-food-kcal').value = '';
-      document.getElementById('new-food-p').value = '';
-      document.getElementById('new-food-c').value = '';
-      document.getElementById('new-food-f').value = '';
-
-      const status = document.getElementById('new-food-status');
-      status.innerText = "Alimento aggiunto al menù del pasto!";
+      const status = document.getElementById('food-editor-status');
+      status.innerText = "Alimento salvato con successo nelle liste selezionate!";
       status.classList.remove('hidden');
       setTimeout(() => status.classList.add('hidden'), 2500);
+
+      populateFoodEditorSelect();
+      document.getElementById('food-editor-select').value = id;
+      loadSelectedFoodToEditor();
 
       renderAllSelects();
       triggerUpdate();
     }
 
+    function resetFoodToDefault() {
+      const selVal = document.getElementById('food-editor-select').value;
+      if (confirm('Vuoi ripristinare questo alimento ai valori e destinazioni originali?')) {
+        state.customFoods = state.customFoods.filter(x => x.id !== selVal);
+        populateFoodEditorSelect();
+        document.getElementById('food-editor-select').value = selVal;
+        loadSelectedFoodToEditor();
+        renderAllSelects();
+        triggerUpdate();
+      }
+    }
+
+    // POPOLAMENTO MENU DEI PASTI
     function renderAllSelects() {
+      const all = getAllFoods();
+
       // 1. Colazione
       const selCol = document.getElementById('sel-colazione');
       const curCol = selCol.value || 'none';
       const isWhey = state.wheyMeal === 'colazione';
-      const colDataset = isWhey ? COLAZIONI_WHEY : COLAZIONI_STANDARD;
-
       selCol.innerHTML = `<option value="none">-- Seleziona Colazione --</option>`;
-      for (const k in colDataset) {
-        selCol.innerHTML += `<option value="${k}">${colDataset[k].text}</option>`;
-      }
-      const customCol = state.customFoods.filter(x => x.meal === 'colazione');
-      if (customCol.length > 0) {
-        selCol.innerHTML += `<optgroup label="I tuoi cibi personalizzati">`;
-        customCol.forEach(c => {
-          selCol.innerHTML += `<option value="${c.id}">${c.name} (${c.kcal} kcal)</option>`;
-        });
-        selCol.innerHTML += `</optgroup>`;
-      }
+      getFoodsFor('colazione').forEach(f => {
+        let label = f.name;
+        if (isWhey && f.wheyName) label = f.wheyName;
+        selCol.innerHTML += `<option value="${f.id}">${label} (${f.kcal} kcal)</option>`;
+      });
       selCol.value = curCol;
 
       // 2. Pranzo Primo
       const selP1 = document.getElementById('sel-pranzo-primo');
       const curP1 = selP1.value || 'none';
       selP1.innerHTML = `<option value="none">-- Nessun primo --</option>`;
-      for (const k in PRIMI_PRANZO) {
-        selP1.innerHTML += `<option value="${k}">${PRIMI_PRANZO[k].name}</option>`;
-      }
-      const customP1 = state.customFoods.filter(x => x.meal === 'pranzo' && x.subcat === 'carb');
-      if (customP1.length > 0) {
-        selP1.innerHTML += `<optgroup label="I tuoi primi piatti">`;
-        customP1.forEach(c => {
-          selP1.innerHTML += `<option value="${c.id}">${c.name} (${c.kcal} kcal)</option>`;
-        });
-        selP1.innerHTML += `</optgroup>`;
-      }
+      getFoodsFor('pranzo_primo').forEach(f => {
+        selP1.innerHTML += `<option value="${f.id}">${f.name} (${f.kcal} kcal)</option>`;
+      });
       selP1.value = curP1;
 
       // 3. Pranzo Proteine
       const selPProt = document.getElementById('sel-pranzo-prot');
       const curPProt = selPProt.value || 'none';
       selPProt.innerHTML = `<option value="none">-- Seleziona proteina --</option>`;
-      PROTEINE.forEach(item => {
-        selPProt.innerHTML += `<option value="${item.id}">${item.name}</option>`;
+      getFoodsFor('pranzo_prot').forEach(f => {
+        selPProt.innerHTML += `<option value="${f.id}">${f.name}</option>`;
       });
-      const customPProt = state.customFoods.filter(x => x.meal === 'pranzo' && x.subcat === 'prot');
-      if (customPProt.length > 0) {
-        selPProt.innerHTML += `<optgroup label="Le tue proteine">`;
-        customPProt.forEach(c => {
-          selPProt.innerHTML += `<option value="${c.id}">${c.name} (${c.kcal} kcal)</option>`;
-        });
-        selPProt.innerHTML += `</optgroup>`;
-      }
       selPProt.value = curPProt;
 
-      // 4. Merenda
-      const selMer = document.getElementById('sel-merenda');
-      const curMer = selMer.value || 'standard';
-      selMer.innerHTML = `<option value="standard">Standard: 50g Pane + 15g Miele + 1 Banana (270 kcal)</option>`;
-      const customMer = state.customFoods.filter(x => x.meal === 'merenda');
-      if (customMer.length > 0) {
-        selMer.innerHTML += `<optgroup label="Le tue merende">`;
-        customMer.forEach(c => {
-          selMer.innerHTML += `<option value="${c.id}">${c.name} (${c.kcal} kcal)</option>`;
-        });
-        selMer.innerHTML += `</optgroup>`;
-      }
-      selMer.value = curMer;
+      // 4. Pranzo Legumi
+      const selPLeg = document.getElementById('sel-pranzo-legumi');
+      const curPLeg = selPLeg.value || 'none';
+      selPLeg.innerHTML = `<option value="none">-- Seleziona legume --</option>`;
+      getFoodsFor('pranzo_leg').forEach(f => {
+        selPLeg.innerHTML += `<option value="${f.id}">${f.name} (${f.kcal} kcal)</option>`;
+      });
+      selPLeg.value = curPLeg;
 
-      // 5. Cena Proteine
+      // 5. Merenda
+      const selMer = document.getElementById('sel-merenda');
+      const curMer = selMer.value || 'mer_standard';
+      selMer.innerHTML = '';
+      getFoodsFor('merenda').forEach(f => {
+        selMer.innerHTML += `<option value="${f.id}">${f.name} (${f.kcal} kcal)</option>`;
+      });
+      selMer.value = curMer && selMer.querySelector(`option[value="${curMer}"]`) ? curMer : 'mer_standard';
+
+      // 6. Cena Proteine
       const selCProt = document.getElementById('sel-cena-prot');
       const curCProt = selCProt.value || 'none';
       selCProt.innerHTML = `<option value="none">-- Seleziona proteina --</option>`;
-      PROTEINE.forEach(item => {
-        selCProt.innerHTML += `<option value="${item.id}">${item.name}</option>`;
+      getFoodsFor('cena_prot').forEach(f => {
+        selCProt.innerHTML += `<option value="${f.id}">${f.name}</option>`;
       });
-      const customCProt = state.customFoods.filter(x => x.meal === 'cena' && x.subcat === 'prot');
-      if (customCProt.length > 0) {
-        selCProt.innerHTML += `<optgroup label="Le tue proteine">`;
-        customCProt.forEach(c => {
-          selCProt.innerHTML += `<option value="${c.id}">${c.name} (${c.kcal} kcal)</option>`;
-        });
-        selCProt.innerHTML += `</optgroup>`;
-      }
       selCProt.value = curCProt;
 
-      // 6. Cena Carbo
+      // 7. Cena Carboidrati
       const selCCarb = document.getElementById('sel-cena-carb');
       const curCCarb = selCCarb.value || 'none';
       selCCarb.innerHTML = `<option value="none">-- Seleziona --</option>`;
-      for (const k in CARBO_CENA) {
-        selCCarb.innerHTML += `<option value="${k}">${CARBO_CENA[k].name}</option>`;
-      }
-      const customCCarb = state.customFoods.filter(x => x.meal === 'cena' && x.subcat === 'carb');
-      if (customCCarb.length > 0) {
-        selCCarb.innerHTML += `<optgroup label="I tuoi carboidrati">`;
-        customCCarb.forEach(c => {
-          selCCarb.innerHTML += `<option value="${c.id}">${c.name} (${c.kcal} kcal)</option>`;
-        });
-        selCCarb.innerHTML += `</optgroup>`;
-      }
+      getFoodsFor('cena_carb').forEach(f => {
+        selCCarb.innerHTML += `<option value="${f.id}">${f.name} (${f.kcal} kcal)</option>`;
+      });
       selCCarb.value = curCCarb;
+
+      // 8. Cena Legumi
+      const selCLeg = document.getElementById('sel-cena-legumi');
+      const curCLeg = selCLeg.value || 'none';
+      selCLeg.innerHTML = `<option value="none">-- Seleziona legume --</option>`;
+      getFoodsFor('cena_leg').forEach(f => {
+        selCLeg.innerHTML += `<option value="${f.id}">${f.name} (${f.kcal} kcal)</option>`;
+      });
+      selCLeg.value = curCLeg;
     }
 
     function handleWheyToggle(meal) {
@@ -771,7 +888,7 @@
       triggerUpdate();
     }
 
-    // ANALISI IA POTENZIATA (POST + Fallback)
+    // ANALISI IA
     async function analyzeFoodWithAI() {
       const inputEl = document.getElementById('ai-input');
       const text = inputEl.value.trim();
@@ -931,6 +1048,7 @@
 
       state.wheyMeal = d.wheyMeal || 'none';
       renderAllSelects();
+      populateFoodEditorSelect();
 
       document.getElementById('sel-colazione').value = d.colazione || 'none';
       if (d.pranzoMode && d.pranzoMode !== state.pranzoMode) switchPranzoMode(d.pranzoMode);
@@ -963,20 +1081,18 @@
 
     function updateTotalsUI() {
       let tot = { kcal: 0, p: 0, c: 0, f: 0 };
+      const allFoods = getAllFoods();
 
       // 1. Colazione
       let bMeal = { kcal: 0, p: 0, c: 0, f: 0 };
       const cVal = document.getElementById('sel-colazione').value;
-      const dataset = (state.wheyMeal === 'colazione') ? COLAZIONI_WHEY : COLAZIONI_STANDARD;
-
       if (cVal !== 'none') {
-        if (dataset[cVal]) {
-          const col = dataset[cVal];
-          bMeal.kcal += col.kcal; bMeal.p += col.p; bMeal.c += col.c; bMeal.f += col.f;
-        } else if (cVal.startsWith('cust_')) {
-          const cust = state.customFoods.find(x => x.id === cVal);
-          if (cust) {
-            bMeal.kcal += cust.kcal; bMeal.p += cust.p; bMeal.c += cust.c; bMeal.f += cust.f;
+        const food = allFoods.find(x => x.id === cVal);
+        if (food) {
+          if (state.wheyMeal === 'colazione' && food.wheyKcal !== undefined) {
+            bMeal.kcal += food.wheyKcal; bMeal.p += food.wheyP; bMeal.c += food.wheyC; bMeal.f += food.wheyF;
+          } else {
+            bMeal.kcal += food.kcal; bMeal.p += food.p; bMeal.c += food.c; bMeal.f += food.f;
           }
         }
       }
@@ -991,14 +1107,9 @@
       if (state.pranzoMode === 'classico') {
         const primoVal = document.getElementById('sel-pranzo-primo').value;
         if (primoVal !== 'none') {
-          if (PRIMI_PRANZO[primoVal]) {
-            const primo = PRIMI_PRANZO[primoVal];
+          const primo = allFoods.find(x => x.id === primoVal);
+          if (primo) {
             pMeal.kcal += primo.kcal; pMeal.p += primo.p; pMeal.c += primo.c; pMeal.f += primo.f;
-          } else if (primoVal.startsWith('cust_')) {
-            const cust = state.customFoods.find(x => x.id === primoVal);
-            if (cust) {
-              pMeal.kcal += cust.kcal; pMeal.p += cust.p; pMeal.c += cust.c; pMeal.f += cust.f;
-            }
           }
         }
 
@@ -1010,14 +1121,9 @@
 
         const protId = document.getElementById('sel-pranzo-prot').value;
         if (protId !== 'none') {
-          const prot = PROTEINE.find(x => x.id === protId);
+          const prot = allFoods.find(x => x.id === protId);
           if (prot) {
             pMeal.kcal += prot.kcal; pMeal.p += prot.p; pMeal.c += prot.c; pMeal.f += prot.f;
-          } else if (protId.startsWith('cust_')) {
-            const cust = state.customFoods.find(x => x.id === protId);
-            if (cust) {
-              pMeal.kcal += cust.kcal; pMeal.p += cust.p; pMeal.c += cust.c; pMeal.f += cust.f;
-            }
           }
         }
 
@@ -1026,9 +1132,11 @@
         }
       } else {
         const legId = document.getElementById('sel-pranzo-legumi').value;
-        if (legId !== 'none' && LEGUMI_BASE[legId]) {
-          const leg = LEGUMI_BASE[legId];
-          pMeal.kcal += leg.kcal; pMeal.p += leg.p; pMeal.c += leg.c; pMeal.f += leg.f;
+        if (legId !== 'none') {
+          const leg = allFoods.find(x => x.id === legId);
+          if (leg) {
+            pMeal.kcal += leg.kcal; pMeal.p += leg.p; pMeal.c += leg.c; pMeal.f += leg.f;
+          }
         }
         const pPane = parseFloat(document.getElementById('input-pranzo-leg-pane').value) || 0;
         if (pPane > 0) {
@@ -1045,16 +1153,12 @@
       // 3. Merenda
       let mMeal = { kcal: 0, p: 0, c: 0, f: 0 };
       const merVal = document.getElementById('sel-merenda').value;
-      if (merVal === 'standard') {
-        mMeal = { ...MERENDA_STANDARD };
-        document.getElementById('merenda-detail-title').innerText = "50g Pane + 15g Miele + 1 Banana";
-        document.getElementById('merenda-detail-macro').innerText = "270 kcal • 5.5g P • 60g C • 2g G";
-      } else if (merVal.startsWith('cust_')) {
-        const cust = state.customFoods.find(x => x.id === merVal);
-        if (cust) {
-          mMeal = { kcal: cust.kcal, p: cust.p, c: cust.c, f: cust.f };
-          document.getElementById('merenda-detail-title').innerText = cust.name;
-          document.getElementById('merenda-detail-macro').innerText = `${cust.kcal} kcal • ${cust.p}g P • ${cust.c}g C • ${cust.f}g G`;
+      if (merVal) {
+        const mer = allFoods.find(x => x.id === merVal);
+        if (mer) {
+          mMeal = { kcal: mer.kcal, p: mer.p, c: mer.c, f: mer.f };
+          document.getElementById('merenda-detail-title').innerText = mer.name;
+          document.getElementById('merenda-detail-macro').innerText = `${mer.kcal} kcal • ${mer.p}P • ${mer.c}C • ${mer.f}G`;
         }
       }
 
@@ -1070,27 +1174,17 @@
       if (state.cenaMode === 'classico') {
         const protId = document.getElementById('sel-cena-prot').value;
         if (protId !== 'none') {
-          const prot = PROTEINE.find(x => x.id === protId);
+          const prot = allFoods.find(x => x.id === protId);
           if (prot) {
             cMeal.kcal += prot.kcal; cMeal.p += prot.p; cMeal.c += prot.c; cMeal.f += prot.f;
-          } else if (protId.startsWith('cust_')) {
-            const cust = state.customFoods.find(x => x.id === protId);
-            if (cust) {
-              cMeal.kcal += cust.kcal; cMeal.p += cust.p; cMeal.c += cust.c; cMeal.f += cust.f;
-            }
           }
         }
 
         const carbId = document.getElementById('sel-cena-carb').value;
         if (carbId !== 'none') {
-          if (CARBO_CENA[carbId]) {
-            const carb = CARBO_CENA[carbId];
+          const carb = allFoods.find(x => x.id === carbId);
+          if (carb) {
             cMeal.kcal += carb.kcal; cMeal.p += carb.p; cMeal.c += carb.c; cMeal.f += carb.f;
-          } else if (carbId.startsWith('cust_')) {
-            const cust = state.customFoods.find(x => x.id === carbId);
-            if (cust) {
-              cMeal.kcal += cust.kcal; cMeal.p += cust.p; cMeal.c += cust.c; cMeal.f += cust.f;
-            }
           }
         }
 
@@ -1105,9 +1199,11 @@
         }
       } else {
         const legId = document.getElementById('sel-cena-legumi').value;
-        if (legId !== 'none' && LEGUMI_BASE[legId]) {
-          const leg = LEGUMI_BASE[legId];
-          cMeal.kcal += leg.kcal; cMeal.p += leg.p; cMeal.c += leg.c; cMeal.f += leg.f;
+        if (legId !== 'none') {
+          const leg = allFoods.find(x => x.id === legId);
+          if (leg) {
+            cMeal.kcal += leg.kcal; cMeal.p += leg.p; cMeal.c += leg.c; cMeal.f += leg.f;
+          }
         }
         const cPane = parseFloat(document.getElementById('input-cena-leg-pane').value) || 0;
         if (cPane > 0) {
@@ -1149,7 +1245,7 @@
           pranzoLeg: 'none',
           pranzoLegPane: 30,
           pranzoLegOlio: 10,
-          merendaFood: 'standard',
+          merendaFood: 'mer_standard',
           merenda: false,
           cenaMode: 'classico',
           cenaProt: 'none',
@@ -1169,6 +1265,7 @@
 
     initTheme();
     renderAllSelects();
+    populateFoodEditorSelect();
     const saved = localStorage.getItem('myDietLog');
     if (saved) applyData(JSON.parse(saved));
   </script>
